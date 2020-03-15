@@ -1,8 +1,8 @@
 # dynamic-programming
-
+---
 Computer Project (I)(II) of NTCUST.<br>
 Independent Study (Special Topic) on Computer Science.<br>
-
+---
 
 - [ ] 1.Sort all products by price.
 - [ ] 2.Put the goods in the temporary backpack.
