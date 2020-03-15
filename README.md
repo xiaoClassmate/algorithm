@@ -4,7 +4,7 @@ Computer Project (I)(II) of NTCUST.<br>
 Independent Study (Special Topic) on Computer Science.<br>
 
 
-- [ ] <ol> Sort all products by price.
+- [ ] <ol><li> Sort all products by price.<ol>
 - [ ] <li> Put the goods in the temporary backpack.
 - [ ] <li> Find the best solution (if the same solution exists but different combinations must be saved together).
 - [ ] <li> Show the solution to the user.
