@@ -11,9 +11,9 @@ Independent Study (Special Topic) on Computer Science.<br>
 <ol>
 
 <p>
-Abstract :
+Topic : thrifty good woman 勤儉持家的好女人
 Objective and background :
-Research Methodology :
+Methodology :
 Conclusion :
 References :
 <p>
