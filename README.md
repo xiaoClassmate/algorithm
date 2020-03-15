@@ -1,6 +1,7 @@
 # dynamic-programming
 
-<p>Computer Project (I)(II) of NTCUST. Independent Study (Special Topic) on Computer Science<p>
+<p>Computer Project (I)(II) of NTCUST.
+<p>Independent Study (Special Topic) on Computer Science
 <ol>
   <li>Sort all products by price
   <li>Put the goods in the temporary backpack
