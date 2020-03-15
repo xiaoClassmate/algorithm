@@ -11,9 +11,9 @@ Independent Study (Special Topic) on Computer Science.<br>
 <ol>
 
 <p>
-Abstract :  
-Objective and background :  
-Research Methodology :  
-Conclusion :  
-References :  
+Abstract :
+Objective and background :
+Research Methodology :
+Conclusion :
+References :
 <p>
