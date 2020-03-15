@@ -9,3 +9,11 @@ Independent Study (Special Topic) on Computer Science.<br>
   <li>Find the best solution (if the same solution exists but different combinations must be saved together).
   <li>Show the solution to the user.
 <ol>
+
+<p>
+Abstract :  
+Objective and background :  
+Research Methodology :  
+Conclusion :  
+References :  
+<p>
