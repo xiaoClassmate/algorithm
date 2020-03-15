@@ -9,7 +9,7 @@ Independent Study (Special Topic) on Computer Science.<br>
 <li> - [ ] Find the best solution (if the same solution exists but different combinations must be saved together).
 <li> - [ ] Show the solution to the user.
 <ol>
-
+<br>
 Topic : thrifty good woman 勤儉持家的好女人<br>
 Objective and background : Non<br>
 Methodology : Non<br>
