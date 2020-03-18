@@ -10,10 +10,4 @@ Independent Study (Special Topic) on Computer Science.<br>
 - [ ] 4. Show the solution to the user.
 ---
 
-Topic : thrifty good woman 勤儉持家的好女人<br>
-Objective and background : Non<br>
-Methodology : Non<br>
-Conclusion : Non<br>
-References : Non<br>
-
 <br>`dynamic-programming` `algorithm`
