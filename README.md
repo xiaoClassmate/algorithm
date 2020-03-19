@@ -10,4 +10,4 @@ Independent Study (Special Topic) on Computer Science.<br>
 - [ ] 4. Show the solution to the user.
 ---
 
-<br>`dynamic-programming` `algorithm`
+<br>`dynamic-programming` `algorithm` `c/c++`
