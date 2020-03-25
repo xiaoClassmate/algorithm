@@ -1,31 +1,67 @@
-var swap = function(data, i, j){ 
-    var tmp = data[i];
-    data[i] = data[j];
-    data[j] = tmp;
-};
-    
-// 以data[left]為Pivot，left相當於最左邊第一個元素    
-var quickSort = function(data, left, right){    
-    if(left < right){
-        var i=left, j=right+1;
-        while(true){
-            // 向右找小於Pivot的數值的位置
-            while(i+1 < data.length && data[++i] < data[left]); 
-            
-            // 向左找大於Pivot的數值的位置
-            while(j-1 > -1 && data[--j] > data[left]);
-            
-            // 若i,j的位置交叉
-            //     代表範圍內，Pivot右邊已無比Pivot小的數值
-            //     代表範圍內，Pivot左邊已無比Pivot大的數值            
-            if(i >= j)    
-                break;
-            
-            // 將比Pivot大的數值換到右邊，比Pivot小的數值換到左邊
-            swap(data, i, j);           
-        }
-        swap(data, left, j);    // 將Pivot移到中間
-        quickSort(data, left, j-1);    // 對左子串列進行快速排序
-        quickSort(data, j+1, right);   // 對右子串列進行快速排序
+#include <stdio.h> 
+#include <stdlib.h>
+
+void quicksort(int *data, int left, int right);
+void swap(int *x, int *y);
+
+int main(void)
+{
+    int i, n, data[10];
+    printf("請輸入資料筆數 n(<= 10): ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++){
+        printf("請輸入第 %d 筆資料: ", i + 1);
+        scanf("%d", &data[i]);
     }
-};
+
+    // 執行快速排序法
+    quicksort(data, 0, n-1);
+
+    printf("\n排序後的結果: ");
+    for (i = 0; i < n; i++){
+        printf("%d ", data[i]);
+    }
+
+    printf("\n");
+    system("pause");
+}
+
+void quicksort(int *data, int left, int right)
+{
+    int pivot, i, j;
+    if (left >= right) { return; }
+    pivot = data[left];
+    i = left + 1;
+    j = right;
+
+    while (1){
+        while (i <= right){
+            if (data[i] > pivot){
+                break;
+            }
+            i = i + 1;
+        }
+
+        while (j > left){
+            if (data[j] < pivot){
+                break;
+            }
+            j = j - 1;
+        }
+
+        if (i > j) { break; }
+        swap(&data[i], &data[j]);
+    }
+
+    swap(&data[left], &data[j]);
+
+    quicksort(data, left, j - 1);
+    quicksort(data, j + 1, right);
+}
+
+void swap(int *x, int *y){
+    *x = *x ^ *y;
+    *y = *x ^ *y;
+    *x = *x ^ *y;
+}
