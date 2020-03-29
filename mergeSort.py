@@ -1,5 +1,3 @@
-import pretty_errors
-
 # def mergeSort(priceList):
 # 	if len(priceList) > 1:
 # 		middle = len(priceList) // 2

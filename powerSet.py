@@ -1,5 +1,3 @@
-import pretty_errors
-
 priceList = [20, 33, 50, 18]
 powerSet = []
 for i in range(1 << len(priceList)):
