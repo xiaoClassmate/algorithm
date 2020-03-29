@@ -12,6 +12,7 @@ with open("/home/xiao/gitReadWrite/algorithm/goodsMenu.json") as f:
 		goodsList.append(goodsMenu[i])
 	print(sorted(goodsList, key = lambda i: i['value'], reverse=True))
 
+# 變數設定
 sum = 0
 backpack = []
 
