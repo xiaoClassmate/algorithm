@@ -63,4 +63,37 @@ if __name__=='__main__':
 	res=backpack(targetSum,valueList, number)
 	show(number,targetSum,valueList,res)
 
+# ---------------------------------------------------------------------
+# 測試結果
+# xiao@DESKTOP-V1PNS4H:~/gitReadWrite/algorithm$ python3 industriousWoman.py
+# Please enter a split money : 321
+# [199, 96, 89, 88, 49, 48, 45, 41, 39, 39, 37, 21, 21, 20, 18, 15, 9, 8, 8, 4]
+# 選擇的物品有 :
+# 第 0 個, value =  199
+# 第 1 個, value =  96
+# 第 11 個, value =  21
+# 第 19 個, value =  4
+# 最佳解(Total) :  320
+# xiao@DESKTOP-V1PNS4H:~/gitReadWrite/algorithm$ python3 industriousWoman.py
+# Please enter a split money : 87
+# [199, 96, 89, 88, 49, 48, 45, 41, 39, 39, 37, 21, 21, 20, 18, 15, 9, 8, 8, 4]
+# 選擇的物品有 :
+# 第 4 個, value =  49
+# 第 10 個, value =  37
+# 最佳解(Total) :  86
+# xiao@DESKTOP-V1PNS4H:~/gitReadWrite/algorithm$ python3 industriousWoman.py
+# Please enter a split money : 228
+# [199, 96, 89, 88, 49, 48, 45, 41, 39, 39, 37, 21, 21, 20, 18, 15, 9, 8, 8, 4]
+# 選擇的物品有 :
+# 第 0 個, value =  199
+# 第 11 個, value =  21
+# 第 17 個, value =  8
+# 最佳解(Total) :  228
+# ---------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
+# 需要修的 bug
+# 不知道為什麼超過輸入超過 390 就會爆炸
+# 我就爛
+# ---------------------------------------------------------------------
  
