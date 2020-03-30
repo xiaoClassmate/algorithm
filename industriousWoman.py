@@ -1,6 +1,5 @@
 import pretty_errors
 import json
-from functools import reduce
 
 # 目標金額輸入
 targetSum = int(input('Please enter a split money : '))
@@ -33,21 +32,35 @@ with open("/home/xiao/gitReadWrite/algorithm/goodsMenu.json") as f:
 # 	f.write(str(powerSet))
 # 	print("OK")
 
-def backpack(targetSuma, valueList, number): 
-    K = [[0 for x in range(targetSum+1)] for x in range(number+1)]  
-    for i in range(number+1): 
-        for j in range(targetSum+1): 
-            if i==0 or j==0: 
-                K[i][j] = 0
-            elif valueList[i-1] <= j: 
-                K[i][j] = max(valueList[i-1] + K[i-1][j-valueList[i-1]],  K[i-1][j]) 
-            else: 
-                K[i][j] = K[i-1][j] 
-  
-    return K[number][targetSum] 
+def backpack(targetSum, valueList, number): 
+	res = [[0 for x in range(targetSum+1)] for x in range(number+1)]
+	for j in range(targetSum+1):
+		res[0][j]=0
+	for i in range(1,number+1):
+		for j in range(1,targetSum+1):
+			res[i][j]=res[i-1][j]
+			if j>=valueList[i-1] and res[i][j]<res[i-1][j-valueList[i-1]]+valueList[i-1]:
+				res[i][j]=res[i-1][j-valueList[i-1]]+valueList[i-1]
+	return res
+ 
+def show(number,targetSum,valueList,res):
+	x=[False for i in range(number)]
+	j=targetSum
+	for i in range(1,number+1):
+		if res[i][j]>res[i-1][j]:
+			x[i-1]=True
+			j-=valueList[i-1]
+	print("選擇的物品有 : ")
+	sum = 0
+	for i in range(number):
+		if x[i]:
+			print("第", i, "個, value = ", valueList[i])
+			sum = sum + valueList[i]
+	print("最佳解(Total) : ",sum)
 
-number = len(valueList) 
-print(backpack(targetSum, valueList, number)) 
-
+if __name__=='__main__':
+	number = len(valueList)
+	res=backpack(targetSum,valueList, number)
+	show(number,targetSum,valueList,res)
 
  
