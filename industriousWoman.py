@@ -1,6 +1,7 @@
 import pretty_errors
 import json
 
+
 # 目標金額輸入
 targetSum = int(input('Please enter a split money : '))
 
