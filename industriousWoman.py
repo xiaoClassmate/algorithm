@@ -6,7 +6,7 @@ import json
 # targetSum = int(input('Please enter a split money : '))
 
 # 從 JSON 導入商品清單並由大到小排序價格
-with open("/home/xiao/gitReadWrite/algorithm/goodsMenu.json") as f:
+with open("/home/xiao/gitReadWrite/algorithm/goodMenu/goodMenu_scrapy.json") as f:
 	goodsMenu = json.load(f)
 	# print(sorted(goodsMenu , key = lambda i: i['value'], reverse=True))
 	value_list = []
