@@ -8,7 +8,7 @@
 import scrapy
 
 
-class GoodmenuItem(scrapy.Item):
+class GoodsmenuItem(scrapy.Item):
     # define the fields for your item here like:
     serial = scrapy.Field()
     name = scrapy.Field()

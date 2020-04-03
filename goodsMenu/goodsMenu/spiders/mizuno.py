@@ -3,7 +3,7 @@ import scrapy
 import json
 import pretty_errors
 from bs4 import BeautifulSoup
-from goodMenu.items import GoodmenuItem
+from goodsMenu.items import GoodsmenuItem
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
@@ -39,7 +39,7 @@ class MizunoSpider(CrawlSpider):
 		value = soup.select('span.ml-item-price')[0].text.split('.')[0].replace('$','')
 		
 
-		crawlitem = GoodmenuItem()
+		crawlitem = GoodsmenuItem()
 		crawlitem['serial'] = self.serial
 		crawlitem['name'] = name
 		crawlitem['value'] = value

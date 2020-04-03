@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for goodMenu project
+# Scrapy settings for goodsMenu project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'goodMenu'
+BOT_NAME = 'goodsMenu'
 
-SPIDER_MODULES = ['goodMenu.spiders']
-NEWSPIDER_MODULE = 'goodMenu.spiders'
+SPIDER_MODULES = ['goodsMenu.spiders']
+NEWSPIDER_MODULE = 'goodsMenu.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'goodMenu (+http://www.yourdomain.com)'
+#USER_AGENT = 'goodsMenu (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'goodMenu.middlewares.GoodmenuSpiderMiddleware': 543,
+#    'goodsMenu.middlewares.GoodsmenuSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'goodMenu.middlewares.GoodmenuDownloaderMiddleware': 543,
+#    'goodsMenu.middlewares.GoodsmenuDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -64,9 +64,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'goodMenu.pipelines.GoodmenuPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'goodsMenu.pipelines.GoodsmenuPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -88,3 +88,12 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# user set
+# LOG_LEVEL = 'INFO'
+
+# user set
+PROXY_LIST_FILE = '/home/xiao/gitReadWrite/algorithm/goodMenu/json/proxy.json'
+
+# user set
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Safari/537.36'
