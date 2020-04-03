@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import json
+import random
 import pretty_errors
 from bs4 import BeautifulSoup
 from goodsMenu.items import GoodsmenuItem
@@ -31,9 +32,11 @@ class MizunoSpider(CrawlSpider):
 			yield scrapy.Request(domain[0] + post.select('a')[0]['href'], self.parse_detail)
 
 	def parse_detail(self, response):
-		self.serial += 1
 		soup = BeautifulSoup(response.body, 'lxml')
 		# print(response.url)
+
+		self.serial += 1
+		number = random.randint(1, 10)
 
 		name = soup.select('div.ml-product-name')[0].text.strip().replace('\"','')
 		value = soup.select('span.ml-item-price')[0].text.split('.')[0].replace('$','')
@@ -43,4 +46,5 @@ class MizunoSpider(CrawlSpider):
 		crawlitem['serial'] = self.serial
 		crawlitem['name'] = name
 		crawlitem['value'] = value
+		crawlitem['number'] = number
 		return crawlitem

@@ -13,3 +13,4 @@ class GoodsmenuItem(scrapy.Item):
     serial = scrapy.Field()
     name = scrapy.Field()
     value = scrapy.Field()
+    number = scrapy.Field()
