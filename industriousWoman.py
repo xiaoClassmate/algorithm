@@ -25,7 +25,7 @@ with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.
 # print('powerSet = ', powerSet)
 
 # 將價格的所有組合寫入 JSON 檔
-# with open("/home/xiao/gitReadWrite/algorithm/powerSet.json", "w") as f:
+# with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.json", "w") as f:
 # 	f.write(str(powerSet))
 # 	print("OK")
 
@@ -40,7 +40,7 @@ def backpack(target_sum, value_list, value_length):
 	for i in range(value_length+1):
 		dp[i][0] = True
 
-	if(dp[value_length-1][target_sum] >= target_sum) :
+	if(dp[value_length][target_sum] >= target_sum) :
 		return dp
 	else:
 		for i in range(1, value_length+1):
