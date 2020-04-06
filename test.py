@@ -66,4 +66,7 @@ if __name__=='__main__':
 	# for j in range(target_sum+1):
 	# 	dp[0][j] = False
 
+	# dp = [[0 for x in range(target_sum+1)] for x in range(value_length+1)]
+	# dp = np.zeros((value_length+1, target_sum))
+
 

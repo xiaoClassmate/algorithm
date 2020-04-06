@@ -3,18 +3,22 @@ import json
 import numpy as np
 
 # 從 JSON 導入商品清單並由大到小排序價格
+value_list = []
 with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.json") as f:
 	goodsMenu = json.load(f)
 	# print(sorted(goodsMenu , key = lambda i: i['value'], reverse=True))
-	value_list = []
 	for i in goodsMenu:
 		value_list.append(i['value'])
 	value_list = sorted(value_list, reverse=True)
+	# ['1', '2', '3'] >> [1, 2, 3]
+	# value_list = list(map(int, value_list)) 
+	value_list = [int(i) for i in value_list] 
 	# print(value_list)
 
-def backpack(target_sum, current_sum, value_list, value_length):
-	dp = [[0 for x in range(target_sum+1)] for x in range(value_length+1)]
-	# dp = np.zeros((value_length+1, target_sum))
+target_sum = int(input('Please enter a split money : ')) 
+
+def backpack(target_sum, available, is_used):
+	value_length = len(value_list)
 
 	# 沒有物品，就沒有辦法求總和
 	if value_length <= 0:
@@ -24,12 +28,32 @@ def backpack(target_sum, current_sum, value_list, value_length):
 	if target_sum <= 0:
 		print("target_sum error")
 
-	for i in range(value_length+1):
-		for j in range(target_sum+1):
-			dp[i][j] = max(dp[i-1][j], dp[i-1][j]+int(value_list[i]))
-			current_sum = dp[i][j]
-			if current_sum >= target_sum:
-				break
+	# 達成目標，return 哪些物品被選
+	if sum(is_used) >= target_sum:
+		yield is_used
+	# 物品全都被拿完了
+	elif available == []:
+		pass
+	else:
+		for i in backpack(target_sum, available[:], is_used+[available[0]]):
+			yield i 
+		for i in backpack(target_sum, available[1:], is_used):
+			yield i 
+
+path = ([path for path in backpack(target_sum, value_list, [])])
+for p in path:
+	print(p)
+
+print("optimal soultion : ", min(path, key=lambda path:(sum(path)-target_sum)))
+
+
+
+
+
+
+
+
+			
 
 
 
