@@ -4,18 +4,19 @@ import numpy as np
 
 # 從 JSON 導入商品清單並由大到小排序價格
 value_list = []
+number_list = []
 with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.json") as f:
 	goodsMenu = json.load(f)
 	# print(sorted(goodsMenu , key = lambda i: i['value'], reverse=True))
 	for i in goodsMenu:
 		value_list.append(i['value'])
+		number_list.append(i['number'])
 	value_list = sorted(value_list, reverse=True)
-	# ['1', '2', '3'] >> [1, 2, 3]
-	# value_list = list(map(int, value_list)) 
-	value_list = [int(i) for i in value_list] 
+	# ['1', '2', '3'] >> [1, 2, 3] 
+	value_list = [int(i) for i in value_list]
+	number_list = [int(i) for i in number_list] 
 	# print(value_list)
-
-target_sum = int(input('Please enter a split money : ')) 
+	# print(number_list)
 
 def backpack(target_sum, available, is_used):
 	value_length = len(value_list)
@@ -35,11 +36,14 @@ def backpack(target_sum, available, is_used):
 	elif available == []:
 		pass
 	else:
+		# choice
 		for i in backpack(target_sum, available[:], is_used+[available[0]]):
 			yield i 
+		# not choice
 		for i in backpack(target_sum, available[1:], is_used):
 			yield i 
 
+target_sum = int(input('Please enter a split money : ')) 
 path = ([path for path in backpack(target_sum, value_list, [])])
 for p in path:
 	print(p)
