@@ -1,5 +1,6 @@
 import pretty_errors
 import json
+import numpy as np
 
 # 從 JSON 導入商品清單並由大到小排序價格
 with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.json") as f:
@@ -11,63 +12,24 @@ with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.
 	value_list = sorted(value_list, reverse=True)
 	# print(value_list)
 
-# 列出所有價格組合
-# powerSet = []
-# for i in range(1 << len(value_list)):
-# 	subSet = []
-# 	sum = 0
-# 	for j in range(len(value_list)):
-# 		if i & (1 << j):
-# 			subSet.append(value_list[j])
-# 			sum = sum + int(value_list[j])
-# 	subSet.append(sum)
-# 	powerSet.append(subSet)
-# print('powerSet = ', powerSet)
-
-# 將價格的所有組合寫入 JSON 檔
-# with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.json", "w") as f:
-# 	f.write(str(powerSet))
-# 	print("OK")
-
-def backpack(target_sum, value_list, value_length):
+def backpack(target_sum, current_sum, value_list, value_length):
 	dp = [[0 for x in range(target_sum+1)] for x in range(value_length+1)]
+	# dp = np.zeros((value_length+1, target_sum))
 
-	# subset[0][targetSum] = False，表示沒有元素，則無法求總和
-	for j in range(target_sum+1):
-		dp[0][j] = False
+	# 沒有物品，就沒有辦法求總和
+	if value_length <= 0:
+		print("value_list error")
 
-	# subset[value_length][0] = True，表示空集合的總和為 0
+	# 目標金額 0 我要怎麼拆分 ?
+	if target_sum <= 0:
+		print("target_sum error")
+
 	for i in range(value_length+1):
-		dp[i][0] = True
+		for j in range(target_sum+1):
+			dp[i][j] = max(dp[i-1][j], dp[i-1][j]+int(value_list[i]))
+			current_sum = dp[i][j]
+			if current_sum >= target_sum:
+				break
 
-	if(dp[value_length][target_sum] >= target_sum) :
-		return dp
-	else:
-		for i in range(1, value_length+1):
-			for j in range(1, target_sum+1):
-				dp[i][j] = dp[i-1][j]
-				if j >= value_list[i-1] and dp[i][j] <= value_list[i-1]:
-					dp[i][j] = value_list[i-1]
-		return dp
- 
-def path(value_length, target_sum, value_list, dp):
-	x=[False for i in range(value_length)]
-	j=target_sum
-	for i in range(1,value_length+1):
-		if dp[i][j] > dp[i-1][j]:
-			x[i-1]=True
-			j -= value_list[i-1]
-	print("選擇的物品有 : ")
-	sum = 0
-	for i in range(value_length):
-		if x[i]:
-			print("第", i, "個, value = ", value_list[i])
-			sum += value_list[i]
-	print("組合 : ",sum)
 
-if __name__=='__main__':
-	target_sum = int(input('Please enter a split money : ')) 
-	value_length = len(value_list)
-	dp=backpack(target_sum,value_list, value_length)
-	path(value_length,target_sum,value_list,dp)
 
