@@ -38,8 +38,8 @@ class MizunoSpider(CrawlSpider):
 		self.serial += 1
 		number = random.randint(1, 10)
 
-		name = soup.select('div.ml-product-name')[0].text.strip().replace('\"','')
-		value = soup.select('span.ml-item-price')[0].text.split('.')[0].replace('$','')
+		name = soup.select('div.ml-product-name')[0].text.strip().replace('\"','').replace('\u00ae','')
+		value = int(soup.select('span.ml-item-price')[0].text.split('.')[0].replace('$',''))
 		
 
 		crawlitem = GoodsmenuItem()

@@ -69,4 +69,36 @@ if __name__=='__main__':
 	# dp = [[0 for x in range(target_sum+1)] for x in range(value_length+1)]
 	# dp = np.zeros((value_length+1, target_sum))
 
+	# def backpack(target_sum, value_list, is_used):
+	# 	value_length = len(value_list)
+
+	# 	# 沒有物品，就沒有辦法求總和
+	# 	if value_length <= 0:
+	# 		print("value_list error")
+
+	# 	# 目標金額 0 我要怎麼拆分 ?
+	# 	if target_sum <= 0:
+	# 		print("target_sum error")
+
+	# 	# 達成目標，return 哪些物品被選
+	# 	if sum(is_used) >= target_sum:
+	# 		yield is_used
+	# 	# 物品全都被拿完了
+	# 	elif value_list == []:
+	# 		pass
+	# 	else:
+	# 		# choice
+	# 		for i in backpack(target_sum, value_list[:], is_used+[value_list[0]]):
+	# 			yield i 
+	# 		# not choice
+	# 		for i in backpack(target_sum, value_list[1:], is_used):
+	# 			yield i 
+
+	# target_sum = int(input('Please enter a split money : ')) 
+	# path = ([path for path in backpack(target_sum, value_list, [])])
+	# for p in path:
+	# 	print(p)
+
+	# print("optimal soultion : ", min(path, key=lambda path:(sum(path)-target_sum)))
+
 
