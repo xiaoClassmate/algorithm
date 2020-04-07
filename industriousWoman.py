@@ -31,8 +31,26 @@ target_sum = int(input('Please enter the Price you want to split : '))
 result = backpack(json, target_sum)
 print(result)
 
+# ----------------------------------------------------------
+# 測試結果
+# Please enter the Price you want to split : 102
+# [{'name': 'TRAINING SOCKS MID 3-PACK', 'serial': 99, 'number': 1, 'value': 12},
+# {'name': "Men's Breath Thermo® Half Zip", 'serial': 76, 'number': 1, 'value': 90}]
 
+# 90*1 + 12*1 = 102
 
+# Please enter the Price you want to split : 79
+# [{'number': 1, 'serial': 49, 'name': 'WARMALITE PIP', 'value': 24},
+# {'number': 1, 'serial': 41, 'name': "MEN'S AERO 4.5 SHORT 2.0", 'value': 55}]
+
+# 55*1 + 2*1 = 79
+
+# Please enter the Price you want to split : 327
+# [{'number': 1, 'value': 12, 'serial': 99, 'name': 'TRAINING SOCKS MID 3-PACK'},
+# {'number': 1, 'value': 45, 'serial': 53, 'name': "Men's Alpha 9 Running Shorts"},
+# {'number': 3, 'value': 90, 'serial': 76, 'name': "Men's Breath Thermo® Half Zip"}]
+
+# 90*3 + 45*1 + 12*1 = 327
 
 
 			
