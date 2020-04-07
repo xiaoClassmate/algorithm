@@ -33,10 +33,10 @@ print(result)
 
 # ------------------------- 測試結果 ---------------------------------
 
-name = 商品名稱
-serial = 商品編號
-value = 商品價格
-number = 商品數量
+# name = 商品名稱
+# serial = 商品編號
+# value = 商品價格
+# number = 商品數量
 
 # Please enter the Price you want to split : 102
 # [{'name': 'TRAINING SOCKS MID 3-PACK', 'serial': 99, 'number': 1, 'value': 12},
