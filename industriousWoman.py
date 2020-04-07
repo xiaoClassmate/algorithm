@@ -2,7 +2,7 @@ import pretty_errors
 import json
 import numpy as np
 
-# 從 JSON 導入商品清單 & 價格由大到小排序
+# json import goodsMenu.json & sort value with decreasing order
 with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.json") as f:
 	goodsMenu = json.load(f)
 	json = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
