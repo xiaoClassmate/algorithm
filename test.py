@@ -101,4 +101,12 @@ if __name__=='__main__':
 
 	# print("optimal soultion : ", min(path, key=lambda path:(sum(path)-target_sum)))
 
+	# 設定 value & number 的 list
+	# value_list = []
+	# number_list = []
+	# for i in json:
+	# 	value_list.append(i['value'])
+	# 	number_list.append(i['number'])
+	# value_list = sorted(value_list, reverse=True)
+
 
