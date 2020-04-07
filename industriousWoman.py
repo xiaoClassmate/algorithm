@@ -18,7 +18,7 @@ with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.
 	# print(value_list)
 	# print(number_list)
 
-def backpack(target_sum, available, is_used):
+def backpack(target_sum, value_list, is_used):
 	value_length = len(value_list)
 
 	# 沒有物品，就沒有辦法求總和
@@ -33,14 +33,14 @@ def backpack(target_sum, available, is_used):
 	if sum(is_used) >= target_sum:
 		yield is_used
 	# 物品全都被拿完了
-	elif available == []:
+	elif value_list == []:
 		pass
 	else:
 		# choice
-		for i in backpack(target_sum, available[:], is_used+[available[0]]):
+		for i in backpack(target_sum, value_list[:], is_used+[value_list[0]]):
 			yield i 
 		# not choice
-		for i in backpack(target_sum, available[1:], is_used):
+		for i in backpack(target_sum, value_list[1:], is_used):
 			yield i 
 
 target_sum = int(input('Please enter a split money : ')) 
