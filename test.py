@@ -101,7 +101,6 @@ if __name__=='__main__':
 
 	# print("optimal soultion : ", min(path, key=lambda path:(sum(path)-target_sum)))
 
-	# 設定 value & number 的 list
 	# value_list = []
 	# number_list = []
 	# for i in json:
