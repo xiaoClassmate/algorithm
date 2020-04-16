@@ -30,7 +30,6 @@ def backpack(json, target_sum, index = 0):
             # 'serial': item['serial'],
             # 'name': item['name'],
             return path
-            item['number'] -= number
 
 # 分一筆
 # target_sum = int(input('Please enter the Price you want to split : '))
