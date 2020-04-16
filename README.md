@@ -5,8 +5,8 @@ Independent Study (Special Topic) on Computer Science.<br>
 
 ---
 - [x] 1. Sort all products by price with decreasing order.
-- [ ] 2. Find the best solution and path(if the same solution exists but different combinations must be saved together).
-- [ ] 3. 
+- [x] 2. Split one, find the best solution and path.
+- [ ] 3. Split two or more, find the best solution and path.
 - [ ] 4. 
 ---
 
