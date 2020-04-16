@@ -1,5 +1,7 @@
 import pretty_errors
 import json
+# import sys
+# sys.setrecursionlimit(100000)
 import numpy as np
 
 # json import goodsMenu.json & sort value with decreasing order
@@ -24,16 +26,35 @@ def backpack(json, target_sum, index = 0):
         path = backpack(json, target_sum - item['value'] * number, index)
         if path != None: 
             if number:
-                return path + [{ 'serial': item['serial'], 'value': item['value'], 'number': number, 'name': item['name']}]
+                return path + [{'value': item['value'], 'number': number}]
+            # 'serial': item['serial'],
+            # 'name': item['name'],
             return path
+            item['number'] -= number
 
+# 分一筆
+# target_sum = int(input('Please enter the Price you want to split : '))
+# result = backpack(json, target_sum)
+# print(result)
+
+# 分兩筆
 target_sum = str(input('Please enter the Price you want to split : '))
 target_sum_list = []
 for i in range(2):
-    target_sum_list.append(int(target_sum.split(' ')[i]))
-print(target_sum_list)
-# result = backpack(json, target_sum)
-# print(result)
+    try:
+        target_sum_list.append(int(target_sum.split(' ')[i]))
+        result = backpack(json, target_sum_list[i])
+        print(result)
+    except:
+        pass
+
+# 已完成：兩筆輸入後跑演算法
+# 待完成：紀錄哪些產品跑過要扣掉
+# ------- 測試 -------
+# Please enter the Price you want to split : 300 666
+# [{'value': 30, 'number': 1}, {'value': 90, 'number': 3}]
+# [{'value': 24, 'number': 1}, {'value': 32, 'number': 1}, {'value': 85, 'number': 4}, {'value': 90, 'number': 3}]
+
 
 
 
