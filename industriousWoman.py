@@ -31,23 +31,25 @@ def backpack(json, target_sum, index = 0):
             # 'name': item['name'],
             return path
 
-# 分一筆
+# 拆一筆
 # target_sum = int(input('Please enter the Price you want to split : '))
 # result = backpack(json, target_sum)
 # print(result)
 
-# 分兩筆
+# 拆兩筆
 target_sum = str(input('Please enter the Price you want to split : '))
 target_sum_list = []
 for i in range(2):
     try:
         target_sum_list.append(int(target_sum.split(' ')[i]))
+        target_sum_list = sorted(target_sum_list, reverse=False)
         result = backpack(json, target_sum_list[i])
-        print(result)
+        # print(result)
+        print(target_sum_list)
     except:
         pass
 
-# 已完成：兩筆輸入後跑演算法
+# 已完成：兩筆輸入後跑演算法、大物品放小門檻
 # 待完成：紀錄哪些產品跑過要扣掉
 # ------- 測試 -------
 # Please enter the Price you want to split : 300 666
