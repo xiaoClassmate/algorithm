@@ -26,6 +26,8 @@ def backpack(json, target_sum, index = 0):
         path = backpack(json, target_sum - item['value'] * number, index)
         if path != None: 
             if number:
+                item['number'] -= number
+                # print({'name': item['name'], 'value': item['value'], 'number': item['number']})
                 return path + [{'value': item['value'], 'number': number}]
             # 'serial': item['serial'],
             # 'name': item['name'],
@@ -44,20 +46,23 @@ for i in range(2):
         target_sum_list.append(int(target_sum.split(' ')[i]))
         target_sum_list = sorted(target_sum_list, reverse=False)
         result = backpack(json, target_sum_list[i])
-        # print(result)
-        print(target_sum_list)
+        print(result)
+        # print(target_sum_list)
     except:
         pass
 
-# 已完成：兩筆輸入後跑演算法、大物品放小門檻
-# 待完成：紀錄哪些產品跑過要扣掉
 # ------- 測試 -------
-# Please enter the Price you want to split : 300 666
-# [{'value': 30, 'number': 1}, {'value': 90, 'number': 3}]
-# [{'value': 24, 'number': 1}, {'value': 32, 'number': 1}, {'value': 85, 'number': 4}, {'value': 90, 'number': 3}]
+# Please enter the Price you want to split : 123 456
+# [{'value': 13, 'number': 1}, {'value': 20, 'number': 1}, {'value': 90, 'number': 1}]
+# [{'value': 24, 'number': 1}, {'value': 82, 'number': 1}, {'value': 85, 'number': 2}, {'value': 90, 'number': 2}]
 
+# ------- 說明 -------
+# json 檔 'value': 90, 'number': 3
+# 第一筆 123 已經拿過 1 個 90，因此第二筆 456 剩 2 個 90 可拿
 
-
+# ------- 結果 -------
+# 已完成：'可以剛好拆分'成功，要開始寫反例
+# 待完成：其中有無法拆分成功的情況、總體最佳
 
 
 			
