@@ -10,7 +10,7 @@ with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.
 	json = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
 	# print(json)
 
-def backpack(json, target_sum, index = 0):
+def backpack(json, target_sum, current_sum = 0, index = 0):
     if target_sum <= 0:
         return []
 
@@ -41,7 +41,7 @@ def backpack(json, target_sum, index = 0):
 # 拆兩筆
 target_sum = str(input('Please enter the Price you want to split : '))
 target_sum_list = []
-for i in range(2):
+for i in range(3):
     try:
         target_sum_list.append(int(target_sum.split(' ')[i]))
         target_sum_list = sorted(target_sum_list, reverse=False)
