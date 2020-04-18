@@ -1,40 +1,45 @@
 import pretty_errors
 import json
-# import sys
-# sys.setrecursionlimit(100000)
-import numpy as np
 
-# json import goodsMenu.json & sort value with decreasing order
+# 導入商品清單(JSON檔)
 with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.json") as f:
     goodsMenu = json.load(f)
 
+# 必買物功能
 def must_buy(target_sum):
     must_buy = str(input('Please enter the serial you must to buy : '))         
     must_buy_list = []
+    must_buy_path = []
     must_buy_length = len(must_buy.split(' '))
     for i in range(0, must_buy_length):
         must_buy_list.append(int(must_buy.split(' ')[i]))
-        print(must_buy_list)
-        item = json[must_buy_list[i]]
-        print(item['value'])
-    #     real_target_sum = target_sum - item['value']
-    # return real_target_sum
+        item = goodsMenu[must_buy_list[i]]
+        # print(item['value'])
+        target_sum -= item['value']
+        real_target_sum = target_sum
+        print([{'serial': item['serial'], 'value': item['value'], 'number':1}])
+    return real_target_sum
 
+
+# 主要拆分演算法
 def backpack(goodsMenu, real_target_sum, index = 0):
-    goodsMenu = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
-    print(goodsMenu)
 
+    # 商品由大到小排序
+    goodsMenu = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
+
+    # 必買物已經超過門檻
     if real_target_sum <= 0:
         return []
 
     if index >= len(goodsMenu):
         return None
 
+    # JSON 索引設定
     item = goodsMenu[index]
     index += 1
     canTake = min(real_target_sum // item['value'], item['number'])
 
-    # 主要拆分演算法
+    # 遞迴
     for number in range(canTake, -1, -1):
         path = backpack(goodsMenu, real_target_sum - item['value'] * number, index)
         if path != None: 
@@ -48,9 +53,9 @@ def backpack(goodsMenu, real_target_sum, index = 0):
 # 拆一筆
 target_sum = int(input('Please enter the Price you want to split : '))
 real_target_sum = must_buy(target_sum)
-# result = backpack(goodsMenu, real_target_sum)
-# print(real_target_sum)
-# print(result)
+result = backpack(goodsMenu, real_target_sum)
+print(real_target_sum)
+print(result)
 
 # 拆兩筆
 # target_sum = str(input('Please enter the Price you want to split : '))
@@ -76,10 +81,10 @@ real_target_sum = must_buy(target_sum)
 # 第一筆 123 已經拿過 1 個 90，因此第二筆 456 剩 2 個 90 可拿
 
 # ------- 結果 -------
-# 4/18 更新：必買物完成
+# 4/18 更新：單一必買物完成
 # ---------------------
 # 已完成：'可以剛好拆分'成功
-# 待完成：其中有無法拆分成功的情況、總體最佳
+# 待完成：多筆必買物、其中有無法拆分成功的情況、總體最佳
 
 
 			
