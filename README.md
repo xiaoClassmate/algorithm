@@ -1,6 +1,6 @@
 # algorithm
 
-Computer Project (I)(II) of NTCUST.<br>
+專題實務 Computer Project (I)(II) of NTCUST.<br>
 Independent Study (Special Topic) on Computer Science.<br>
 
 ---
