@@ -9,73 +9,79 @@ with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.
 def must_buy(target_sum):
 
     # 必買物序號
-    must_buy = str(input('Please enter the serial you must to buy : '))         
-    must_buy_list = []
-    
-    must_buy_length = len(must_buy.split(' '))
-    for i in range(0, must_buy_length):
-        # 將序號存到 list 中
-        must_buy_list.append(int(must_buy.split(' ')[i]))
+    must_buy = str(input('Please enter the serial and number that you must to buy : '))         
+    must_buy_serial = []
+    must_buy_number = []
+    for i in range(0, len(must_buy_serial)):
+        # 將序號跟數量分別存到各自的 list 中
+        if(i % 2 == 0):
+            must_buy_serial.append(int(must_buy.split(' ')[i]))
+        else:
+            must_buy_number.append(int(must_buy.split(' ')[i]))
+
+        print(must_buy_number)
+        print(must_buy_serial)
+
         # 根據序號在 JSON 檔中取出與 serial 相對應的 value 值
-        item = goodsMenu[must_buy_list[i]]
+        item = goodsMenu[must_buy_serial[i]]
         # 實際要拆分的錢 = 拆分的錢 - 必買物價格
         target_sum -= item['value']
+        # print(must_buy_number)
         real_target_sum = target_sum
-        # 印出買了哪些 "必買物"
-        print([{'serial': item['serial'], 'value': item['value'], 'number':1}])
-    # 回傳實際要拆分的錢
-    return real_target_sum
-
+#     # 印出買了哪些 "必買物"
+#      print([{'serial': item['serial'], 'value': item['value'], 'number':1}])
+# 回傳實際要拆分的錢
+# return real_target_sum
 
 # 主要拆分演算法
-def backpack(goodsMenu, real_target_sum, index = 0):
+# def backpack(goodsMenu, real_target_sum, index = 0):
 
-    # 商品由大到小排序
-    goodsMenu = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
+#     # 商品由大到小排序
+#     goodsMenu = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
 
-    # 必買物已經超過門檻
-    if real_target_sum <= 0:
-        return []
+#     # 必買物已經超過門檻
+#     if real_target_sum <= 0:
+#         return []
 
-    if index >= len(goodsMenu):
-        return None
+#     if index >= len(goodsMenu):
+#         return None
 
-    # JSON 索引設定
-    item = goodsMenu[index]
-    index += 1
-    canTake = min(real_target_sum // item['value'], item['number'])
+#     # JSON 索引設定
+#     item = goodsMenu[index]
+#     index += 1
+#     canTake = min(real_target_sum // item['value'], item['number'])
 
-    # 遞迴
-    for number in range(canTake, -1, -1):
-        path = backpack(goodsMenu, real_target_sum - item['value'] * number, index)
-        if path != None: 
-            if number:
-                item['number'] -= number
-                # print({'name': item['name'], 'value': item['value'], 'number': item['number']})
-                return path + [{'serial': item['serial'], 'value': item['value'], 'number': number}]
-            # 'name': item['name'],
-            return path
+#     # 遞迴
+#     for number in range(canTake, -1, -1):
+#         path = backpack(goodsMenu, real_target_sum - item['value'] * number, index)
+#         if path != None: 
+#             if number:
+#                 item['number'] -= number
+#                 # print({'name': item['name'], 'value': item['value'], 'number': item['number']})
+#                 return path + [{'serial': item['serial'], 'value': item['value'], 'number': number}]
+#             # 'name': item['name'],
+#             return path
 
 # 拆一筆
 target_sum = int(input('Please enter the Price you want to split : '))
 real_target_sum = must_buy(target_sum)
-result = backpack(goodsMenu, real_target_sum)
+# result = backpack(goodsMenu, real_target_sum)
 print(real_target_sum)
-print(result)
+# print(result)
 
 # 拆兩筆
-target_sum = str(input('Please enter the Price you want to split : '))
-target_sum_list = []
-target_sum_length = len(target_sum.split(' '))
-for i in range(target_sum_length):
-    try:
-        target_sum_list.append(int(target_sum.split(' ')[i]))
-        target_sum_list = sorted(target_sum_list, reverse=False)
-        result = backpack(json, target_sum_list[i])
-        print(result)
-        # print(target_sum_list)
-    except:
-        pass
+# target_sum = str(input('Please enter the Price you want to split : '))
+# target_sum_list = []
+# target_sum_length = len(target_sum.split(' '))
+# for i in range(target_sum_length):
+#     try:
+#         target_sum_list.append(int(target_sum.split(' ')[i]))
+#         target_sum_list = sorted(target_sum_list, reverse=False)
+#         result = backpack(json, target_sum_list[i])
+#         print(result)
+#         # print(target_sum_list)
+#     except:
+#         pass
 
 # ------- 更新 -------
 # 4/18 更新：單一必買物完成
