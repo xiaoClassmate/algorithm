@@ -19,7 +19,7 @@ class MizunoSpider(CrawlSpider):
 	#     )
 	# ]
 
-	serial = 0
+	serial = -1
 
 	def start_requests(self):
 		urls = ['https://www.mizunousa.com/category/sports/running/sports+running+apparel.do?c=100262.100269.100356&sortby=bestSellersAscend&pp=100',
