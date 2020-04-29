@@ -7,6 +7,10 @@ sys.setrecursionlimit(1000000)
 # 導入商品清單(JSON)
 with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.json") as f:
     goodsMenu = json.load(f)
+    value_list = []
+    for i in goodsMenu[:]:
+        value_list.append(i['value'])
+    value_list.sort(reverse=True)
 
 # 必買物功能
 def must_buy(target_sum):
@@ -58,49 +62,38 @@ def must_buy(target_sum):
         # print(must_buy_serial)
         # print(must_buy_number)
 
-def backpack(goodsMenu, real_target_sum, index = 0):
+def backpack(goodsMenu, real_target_sum, total_price):
     # 商品由大到小排序
     goodsMenu = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
-    value_list = []
-    for i in goodsMenu[:]:
-        value_list.append(i['value'])
-    print(value_list)
 
     # 必買物已經超過門檻，回傳必買物總金額
     if int(real_target_sum) <= 0:
         return '必買物總計 ' + str(target_sum - real_target_sum) + ' 元已經超過門檻 '
 
-    # JSON 索引設定
-    item = goodsMenu[index]
-    index += 1
-
     powerSet = []
-    closest = []
+    subSet_sum_list = []
     answer = 0
     for i in range(1 << len(value_list)):
         subSet = []
-        arrsum = 0
+        subSet_sum = 0
         for j in range(len(value_list)):
             if i & (1 << j):
                 subSet.append(value_list[j])
-                arrsum = arrsum + int(value_list[j])
-        closest.append(arrsum)
+                subSet_sum += int(value_list[j])
+        subSet_sum_list.append(subSet_sum)
         powerSet.append(subSet)
-    answer = min(filter(lambda x: x >= real_target_sum, closest))
+    # print(powerSet)
+    # print(subSet_sum_list)
+    answer = min(filter(lambda x: x >= real_target_sum, subSet_sum_list))
+    print('split = ', real_target_sum)
     print('answer = ', answer)
-
-    # # 可以拿的數量 = min()
-    # canTake = min(real_target_sum // item['value'], item['number'])
-
-    # # 遞迴
-    # for number in range(canTake, -1, -1):
-    #     path = backpack(goodsMenu, real_target_sum - item['value'] * number, index)
-    #     if path != None: 
-    #         if number:
-    #             # 紀錄已經拿了幾個，並扣除，避免拿取已經拿過的產品
-    #             item['number'] -= number
-    #             return path + [{'serial': item['serial'], 'value': item['value'], 'number': number}]  # 'name': item['name'],
-    #         return path
+    path = powerSet[subSet_sum_list.index(answer)]
+    print('path = ', path)
+    for i in range(len(path)):
+        value_list.remove(path[i])
+    print('value_list = ', value_list)
+    print('-------------------------')
+    return answer
 
 # 拆一筆
 # target_sum = int(input('Please enter the Price you want to split : '))
@@ -117,13 +110,8 @@ for i in range(target_sum_length):
     target_sum_list = sorted(target_sum_list, reverse=False)
     # print(target_sum_list)
 
+total_price = 0
 for i in range(target_sum_length):
-        result = backpack(goodsMenu, target_sum_list[i])
-        
-
-
-# ------- 更新 -------
-# 4/18 更新：單一、多筆必買物完成
-# 已完成：單一必買物、拆一筆、拆兩筆
-# 待完成：拆兩筆的總體最佳問題
-
+    result = backpack(goodsMenu, target_sum_list[i], total_price)
+    total_price += result
+print('total_price = ', total_price)
