@@ -6,7 +6,7 @@ for i in range(1 << len(priceList)):
 	for j in range(len(priceList)):
 		if i & (1 << j):
 			subSet.append(priceList[j])
-			sum = sum + int(priceList[j])
-	subSet.append(sum)
+			# sum = sum + int(priceList[j])
+	# subSet.append(sum)
 	powerSet.append(subSet)
 print('powerSet = ', powerSet)
