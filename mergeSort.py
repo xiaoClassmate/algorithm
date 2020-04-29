@@ -32,9 +32,9 @@
 # 			R += 1
 # 			K += 1
 
-priceList = [20, 33, 50, 18]
-priceList.sort()
-priceList.reverse()
+# priceList = [20, 33, 50, 18]
+# priceList.sort()
+# priceList.reverse()
 # mergeSort(priceList)
 
 
