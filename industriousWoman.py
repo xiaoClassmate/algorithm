@@ -1,8 +1,6 @@
-from itertools import combinations_with_replacement
+import itertools
 import pretty_errors
 import json
-import sys
-sys.setrecursionlimit(1000000)
 
 # 導入商品清單(JSON)
 with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.json") as f:
@@ -62,17 +60,26 @@ def must_buy(target_sum):
         # print(must_buy_serial)
         # print(must_buy_number)
 
-def backpack(goodsMenu, real_target_sum, total_price):
+def backpack(goodsMenu, real_target_sum):
     # 商品由大到小排序
     goodsMenu = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
 
+    value_list = []
+    for i in goodsMenu[:]:
+        value_list.append(i['value'])
+    value_list.sort(reverse=True)
+
     # 必買物已經超過門檻，回傳必買物總金額
     if int(real_target_sum) <= 0:
-        return '必買物總計 ' + str(target_sum - real_target_sum) + ' 元已經超過門檻 '
+        return '必買物總計 ' + str(target_sum - real_target_sum) + ' 元已經超過門檻'
 
+    # 窮舉所有組合
     powerSet = []
-    subSet_sum_list = []
-    answer = 0
+
+    # 其中每一筆組合的總和
+    powerSet_sum = []
+    
+    # 第一次主要找 powerSet 的區塊
     for i in range(1 << len(value_list)):
         subSet = []
         subSet_sum = 0
@@ -80,20 +87,60 @@ def backpack(goodsMenu, real_target_sum, total_price):
             if i & (1 << j):
                 subSet.append(value_list[j])
                 subSet_sum += int(value_list[j])
-        subSet_sum_list.append(subSet_sum)
+        powerSet_sum.append(subSet_sum)
         powerSet.append(subSet)
     # print(powerSet)
-    # print(subSet_sum_list)
-    answer = min(filter(lambda x: x >= real_target_sum, subSet_sum_list))
+    # print(powerSet_sum)
+
+    # ---------------------------------
+    # range(1 << len(value_list)): [<<]是移位運算符號
+    # 在二進制左移一次相當於[*2]，例如 0000 1100(12) << 2 等於 0011 0000(48)
+    # range = 1*2^len(value_list)次方，why? := 計算 2 的所有組合有 4 種 00 01 10 11 等於 2^2
+    # & 是二進制的邏輯運算，例如 0011 1100 & 0000 1101 == 0000 1100
+    # if i & (1 << j): 每一種組合的取 or 不取
+    # ---------------------------------
+
+    # powerSet_comb = []
+    # powerSet_comb = list(itertools.combinations(powerSet_sum, 2))
+
+    # 所有 >= real_target_sum 的 sum 組合
+    # answer_list = []
+    # for i in range(len(powerSet_sum)):
+    #     if powerSet_sum[i] >= real_target_sum:
+    #         answer_list.append(powerSet_sum[i])
+
+    answer = 0
+    answer_list = list(filter(lambda x: x >= real_target_sum, powerSet_sum))
+    
     print('split = ', real_target_sum)
-    print('answer = ', answer)
-    path = powerSet[subSet_sum_list.index(answer)]
-    print('path = ', path)
+    print('answer = ', answer_list)
+
+    # 第一筆的所有組合路徑
+    path = []
+    for i in range(len(answer_list)):
+        path.append(powerSet[powerSet_sum.index(answer_list[i])])
+    
+    # 送往第二次 powerSet 區塊的 value_list
+    vlist = []
     for i in range(len(path)):
-        value_list.remove(path[i])
-    print('value_list = ', value_list)
-    print('-------------------------')
+        vlist.append(list(value_list))
+        for j in range(len(path[i])):
+            try:
+                vlist[i].remove((path[i])[j])
+            except:
+                pass
+
+    # 格式化輸出
+    print('value_list - path = vlist')
+    for i in range(len(path)):
+        print('{} - {} = {}'.format(value_list, sorted(path[i], reverse=True), sorted(vlist[i], reverse=True)))
+
+    # DEUBG
+    # print(id(vlist), id(value_list))
+
+    print('------')
     return answer
+    print('------')
 
 # 拆一筆
 # target_sum = int(input('Please enter the Price you want to split : '))
@@ -102,7 +149,9 @@ def backpack(goodsMenu, real_target_sum, total_price):
 # print(result)
 
 # 拆兩筆
+print('-----------------')
 target_sum = str(input('Please enter the Price you want to split : '))
+print('-----------------')
 target_sum_list = []
 target_sum_length = len(target_sum.split(' '))
 for i in range(target_sum_length):
@@ -111,7 +160,9 @@ for i in range(target_sum_length):
     # print(target_sum_list)
 
 total_price = 0
+total_price_list = []
 for i in range(target_sum_length):
-    result = backpack(goodsMenu, target_sum_list[i], total_price)
+    result = backpack(goodsMenu, target_sum_list[i])
     total_price += result
+total_price_list.append(total_price)
 print('total_price = ', total_price)
