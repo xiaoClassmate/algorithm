@@ -60,14 +60,9 @@ def must_buy(target_sum):
         # print(must_buy_serial)
         # print(must_buy_number)
 
-def backpack(goodsMenu, real_target_sum):
+def backpack(goodsMenu, real_target_sum, target_sum):
     # 商品由大到小排序
     goodsMenu = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
-
-    value_list = []
-    for i in goodsMenu[:]:
-        value_list.append(i['value'])
-    value_list.sort(reverse=True)
 
     # 必買物已經超過門檻，回傳必買物總金額
     if int(real_target_sum) <= 0:
@@ -78,8 +73,16 @@ def backpack(goodsMenu, real_target_sum):
 
     # 其中每一筆組合的總和
     powerSet_sum = []
+
+    # 倉庫(將樹狀每個分支進行樹的走訪)
+    repositories = []
+
+    # 儲存第 N 筆解的 list
+    for i in range(len(target_sum_list)):
+        print('answer_' + str(i))
     
     # 第一次主要找 powerSet 的區塊
+    # for recursion in range(len(target_sum)):
     for i in range(1 << len(value_list)):
         subSet = []
         subSet_sum = 0
@@ -113,14 +116,14 @@ def backpack(goodsMenu, real_target_sum):
     answer_list = list(filter(lambda x: x >= real_target_sum, powerSet_sum))
     
     print('split = ', real_target_sum)
-    print('answer = ', answer_list)
+    print('answer_list = ', answer_list)
 
     # 第一筆的所有組合路徑
     path = []
     for i in range(len(answer_list)):
         path.append(powerSet[powerSet_sum.index(answer_list[i])])
     
-    # 送往第二次 powerSet 區塊的 value_list
+    # vlist
     vlist = []
     for i in range(len(path)):
         vlist.append(list(value_list))
@@ -162,7 +165,7 @@ for i in range(target_sum_length):
 total_price = 0
 total_price_list = []
 for i in range(target_sum_length):
-    result = backpack(goodsMenu, target_sum_list[i])
+    result = backpack(goodsMenu, target_sum_list[i], target_sum_list)
     total_price += result
 total_price_list.append(total_price)
 print('total_price = ', total_price)
