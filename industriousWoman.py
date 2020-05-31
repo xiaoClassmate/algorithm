@@ -63,8 +63,12 @@ def must_buy(target_sum_list):
             item['number'] -= must_buy_number[i]
 
         # 回傳實際要拆分的錢
+<<<<<<< HEAD
         print("real_target_sum_length " + str(real_target_sum_list))
         print ('--------------------------------------------------------------------')
+=======
+        # real_target_sum_list = target_sum_list
+>>>>>>> 679fea40551cd01ef514c487ff6b4e337a8b933e
         return real_target_sum_list
 
 def split_algorithm(goodsMenu, real_target_sum_list, target_sum_list):
@@ -74,10 +78,17 @@ def split_algorithm(goodsMenu, real_target_sum_list, target_sum_list):
     # JSON 索引設定
     # goodsMenu[第幾筆][鍵值]，goodsMenu[0]["value"]：表示從 JSON 檔取出第 1 筆的 value
 
+<<<<<<< HEAD
+=======
+    print("real_target_sum_length" + str(real_target_sum_list))
+    print("target_sum_length" + str(target_sum_list))
+
+>>>>>>> 679fea40551cd01ef514c487ff6b4e337a8b933e
     # 必買物已經超過門檻，回傳必買物總金額
     if int(real_target_sum_list[0]) <= 0:
         return '門檻一必買物總計 ' + str(target_sum_list[0] - real_target_sum_list[0]) + ' 元已經超過門檻'
 
+<<<<<<< HEAD
     # 計算現在正在跑到第幾筆門檻
     count = 0
 
@@ -172,10 +183,15 @@ def recursion(repositories, count):
         repositories.append(remainder_list[i])
 
     return powerSet, powerSet_sum, repositories    
+=======
+    這邊空了一大塊，要寫拆2筆的總體最佳解
+
+>>>>>>> 679fea40551cd01ef514c487ff6b4e337a8b933e
 # _______________________________________________________________________________________________________________________
 
 # 使用者輸入要拆的金額
 print('--------------------------------------------------------------------')
+<<<<<<< HEAD
 target_sum = str(input('Please enter the price you want to split : ')) 
 print('--------------------------------------------------------------------')
 
@@ -186,6 +202,22 @@ target_sum_list = []
 # len(target_sum.split(' ')) 是計算 target_sum 的長度 = 1 表示拆 1 筆，len(target_sum.split(' ')) = 2 表示拆 2 筆，以此類推
 for i in range(len(target_sum.split(' '))):
     target_sum_list.append(int(target_sum.split(' ')[i]))
+=======
+target_sum = str(input('Please enter the price you want to split : '))
+print('--------------------------------------------------------------------')
+
+# len(target_sum.split(' ')) 是計算 target_sum 的長度
+# target_sum_length = 1 表示拆 1 筆，target_sum_length = 2 表示拆 2 筆，以此類推
+target_sum_length = len(target_sum.split(' '))
+
+#  建立 target_sum_list
+target_sum_list = []
+
+# 將要拆分的門檻依序加入 target_sum_list
+for i in range(target_sum_length):
+    target_sum_list.append(int(target_sum.split(' ')[i]))
+
+>>>>>>> 679fea40551cd01ef514c487ff6b4e337a8b933e
     # 由小到大排序(為了符合大金額放小門檻的原理，小門檻優先拆分)
     target_sum_list = sorted(target_sum_list, reverse=False)
 
@@ -194,19 +226,31 @@ real_target_sum_list = must_buy(target_sum_list)
 
 # split_algorithm(JSON, 真正的目標門檻金額) >> 回傳 總體最佳解
 result = split_algorithm(goodsMenu, real_target_sum_list, target_sum_list)
+<<<<<<< HEAD
+=======
+print(result)
+>>>>>>> 679fea40551cd01ef514c487ff6b4e337a8b933e
 
 # _______________________________________________________________________________________________________________________
 
 # DEBUG 專區
+<<<<<<< HEAD
 # print("real_target_sum_length " + str(real_target_sum_list))
 # print("target_sum_length " + str(target_sum_list))
+=======
+# print("real_target_sum_length" + str(real_target_sum_list))
+# print("target_sum_length" + str(target_sum_list))
+>>>>>>> 679fea40551cd01ef514c487ff6b4e337a8b933e
 # print(id(變數1), id(變數2))
 # powerSet_comb = []
 # powerSet_comb = list(itertools.combinations(powerSet_sum, 2))
 # print(must_buy_serial)
 # print(must_buy_number)
+<<<<<<< HEAD
 
 # 格式化輸出
 # for i in range(len(powerSet)):
 #     print('{} - {} ({}) = {}'.format(temp, powerSet[i], powerSet_sum[i], remainder_list[i]))
 # print('{}'.format(repositories))
+=======
+>>>>>>> 679fea40551cd01ef514c487ff6b4e337a8b933e
