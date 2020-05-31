@@ -111,23 +111,21 @@
 # with open("/home/xiao/gitReadWrite/algorithm/goodsMenu/goodsMenu/json/goodsMenu.json") as f:
 #     goodsMenu = json.load(f)
 
-gesture = [10, 20, 30]
-visited = [False] * len(gesture)
-arrangement = [''] * len(gesture)
+# gesture = [10, 20, 30]
+# visited = [False] * len(gesture)
+# arrangement = [''] * len(gesture)
 
 
-def dfs(layer):
-    if layer == len(gesture):
-        print(*arrangement, sep='\t\t')
-        return
+# def dfs(layer):
+#     if layer == len(gesture):
+#         print(*arrangement, sep='\t\t')
+#         return
 
-    for i in range(len(gesture)):
-        if visited[i]:
-            continue
-        visited[i] = True
-        arrangement[layer] = gesture[i]
-        dfs(layer + 1)
-        visited[i] = False
+#     for i in range(len(gesture)):
+#         if visited[i]:
+#             continue
+#         visited[i] = True
+#         arrangement[layer] = gesture[i]
+#         dfs(layer + 1)
+#         visited[i] = False
 
-
-dfs(0)
