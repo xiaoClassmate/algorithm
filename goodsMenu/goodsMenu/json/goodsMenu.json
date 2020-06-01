@@ -1,8 +1,11 @@
 [
 {"serial": 0, "value": 500, "number": 1, "name": "I'am xiaoClassmate"},
 {"serial": 1, "value": 150, "number": 3, "name": "Men's Inspire 2.0 Running Singlet"},
-{"serial": 2, "value": 250, "number": 1, "name": "Men's Aero 4.5 Short"},
+{"serial": 2, "value": 250, "number": 2, "name": "Men's Aero 4.5 Short"},
 {"serial": 3, "value": 300, "number": 4, "name": "Women's BCRF Hope Tee"},
 {"serial": 4, "value": 330, "number": 1, "name": "Men's Atlanta Track Club 50/50 Tank"},
-{"serial": 5, "value": 100, "number": 2, "name": "Womens Aero Running Tank"}
+{"serial": 5, "value": 100, "number": 2, "name": "Womens Aero Running Tank"},
+{"serial": 6, "value": 180, "number": 2, "name": "Womens Aero Running OOOO"},
+{"serial": 7, "value": 240, "number": 2, "name": "Womens Aero Running AAAA"},
+{"serial": 8, "value": 60, "number": 3, "name": "Womens Aero Running BBBB"}
 ]

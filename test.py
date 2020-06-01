@@ -129,3 +129,8 @@
 #         dfs(layer + 1)
 #         visited[i] = False
 
+# value_list = []
+# for i in goodsMenu[:]:
+#     value_list.append(i['value'])
+# value_list.sort(reverse=True)
+# print(goodsMenu)
