@@ -78,9 +78,8 @@ def split_algorithm(must_buy):
     goodsMenu = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
 
     # 必買物已經超過門檻，回傳必買物總金額
-    if len(real_target_sum_list) == 1:
-        if int(real_target_sum_list[0]) <= 0:
-            print('門檻必買物總計 ' + str(target_sum_list[0] - real_target_sum_list[0]) + ' 元已經超過門檻') 
+    if len(real_target_sum_list) == 1 and int(real_target_sum_list[0]) <= 0:
+        print('門檻必買物總計 ' + str(target_sum_list[0] - real_target_sum_list[0]) + ' 元已經超過門檻') 
     else:
         # 計算現在正在跑到第幾筆門檻
         count = 0
@@ -110,20 +109,18 @@ def split_algorithm(must_buy):
             answer_path[i].extend(powerSet)
             count += 1
 
-        # try:
-        for i in range(len(real_target_sum_list)-1):
-            answer_list[i+1] = [e1 + e2 for e1, e2 in zip(answer_list[i], answer_list[i+1])]
-        answer_sum = answer_list[-1]
-        index = answer_sum.index(min(answer_sum))
-        for i in range(len(real_target_sum_list)):
-            print('第' + str(i) + '筆 = {}, path = {}'.format(show_answer_list[i][index], answer_path[i][index]))
-    #     print('第二筆 = {}, path = {}'.format(answer_2[index], answer_2_path[index]))
-        print('總體最佳解 = {}'.format(min(answer_sum)))
-        # except:
-        #     pass
-        # #     print('總體最佳解 = {}'.format(min(answer_1) + must_buy_value))
-        # #     index = answer_1.index(min(answer_1))
-        # #     print('第一筆 = {}, path = {}'.format(answer_1[index], answer_1_path[index]))
+        if len(real_target_sum_list) == 1:
+            answer_sum = min(show_answer_list)
+            index = answer_sum.index(min(answer_sum))
+            print('總體最佳解 = {}, path = {}'.format(min(answer_sum), answer_path[0][index]))
+        else:
+            for i in range(len(real_target_sum_list)-1):
+                answer_list[i+1] = [e1 + e2 for e1, e2 in zip(answer_list[i], answer_list[i+1])]
+            answer_sum = answer_list[-1]
+            index = answer_sum.index(min(answer_sum))
+            for i in range(len(real_target_sum_list)):
+                print('第' + str(i) + '筆 = {}, path = {}'.format(show_answer_list[i][index], answer_path[i][index]))
+            print('總體最佳解 = {}'.format(min(answer_sum)))
     
 def recursion(repositories, count):
     # repositories 扣除 powerSet 後剩餘可選

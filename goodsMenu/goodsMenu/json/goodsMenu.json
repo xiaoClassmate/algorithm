@@ -7,5 +7,5 @@
 {"serial": 5, "value": 100, "number": 2, "name": "Womens Aero Running Tank"},
 {"serial": 6, "value": 180, "number": 2, "name": "Womens Aero Running OOOO"},
 {"serial": 7, "value": 240, "number": 2, "name": "Womens Aero Running AAAA"},
-{"serial": 8, "value": 60, "number": 3, "name": "Womens Aero Running BBBB"}
+{"serial": 8, "value": 60, "number": 1, "name": "Womens Aero Running BBBB"}
 ]
