@@ -1,5 +1,6 @@
 import pretty_errors
 import json
+import time
 
 # 必買物功能
 def must_buy(target_sum_list):
@@ -8,8 +9,12 @@ def must_buy(target_sum_list):
         goodsMenu = json.load(f)
 
     # 輸入必買物，格式：[編號A 數量A 編號B 數量B 編號C 數量C ...]
-    must_buy = str(input('請輸入您必須購買的序列號和編號：'))
+    must_buy = str(input('請輸入您必須購買的序列號和數量：'))
     print('--------------------------------------------------------------------')
+
+    # 開始測量
+    global start
+    start = time.time()
 
     # 全域變數(global)會解決一切
     global real_target_sum_list
@@ -87,12 +92,12 @@ def split_algorithm(must_buy):
 
     # 倉庫的初值設定(用來跑遞迴每一層的所有組合)
     repositories = []
-    temp = []
+    buff = []
     for i in range(len(goodsMenu)):
         if goodsMenu[i]["number"] >0:
             for j in range(goodsMenu[i]["number"]):
-                temp.append(goodsMenu[i]["value"])
-    repositories.append(temp)
+                buff.append(goodsMenu[i])
+    repositories.append(buff)
 
     # 根據拆的筆數，生成多少個 list，例：len(real_target_sum_list) = 3 則生成 [[], [], []]
     calculate = [[] for i in range(len(real_target_sum_list))]
@@ -100,24 +105,33 @@ def split_algorithm(must_buy):
     answer_path = [[] for i in range(len(real_target_sum_list))]
     overall_best_solution = []
 
-    for i in range(len(real_target_sum_list)):
+    for i in range(1):
         resursion_record = recursion(repositories, count)
-        powerSet = resursion_record[0]
-        powerSet_sum = resursion_record[1]
-        repositories = resursion_record[2]
-        calculate[i].extend(powerSet_sum)
-        answer_list[i].extend(powerSet_sum)
-        answer_path[i].extend(powerSet)
-        count += 1
+    #     powerSet = resursion_record[0]
+    #     powerSet_sum = resursion_record[1]
+    #     repositories = resursion_record[2]
+    #     calculate[i].extend(powerSet_sum)
+    #     answer_list[i].extend(powerSet_sum)
+    #     answer_path[i].extend(powerSet)
+    #     count += 1
 
-    for i in range(len(real_target_sum_list)-1):
-        calculate[i+1] = [e1 + e2 for e1, e2 in zip(calculate[i], calculate[i+1])]
-    overall_best_solution = calculate[-1]
-    index = overall_best_solution.index(min(overall_best_solution))
+    # for i in range(len(real_target_sum_list)-1):
+    #     calculate[i+1] = [e1 + e2 for e1, e2 in zip(calculate[i], calculate[i+1])]
+    # overall_best_solution = calculate[-1]
+    # index = overall_best_solution.index(min(overall_best_solution))
 
-    for i in range(len(real_target_sum_list)):
-        print('第' + str(i) + '筆 = {}, path = {}'.format(answer_list[i][index], answer_path[i][index]))
-    print('總體最佳解 = {}'.format(min(overall_best_solution) + must_buy_value))
+    # for i in range(len(real_target_sum_list)):
+    #     print('第' + str(i) + '筆 = {}, path = {}'.format(answer_list[i][index], answer_path[i][index]))
+    # print('--------------------------------------------------------------------')
+    # print('總體最佳解 = {}'.format(min(overall_best_solution) + must_buy_value))
+    # print('--------------------------------------------------------------------')
+
+    # # 結束測量
+    # global end
+    # end = time.time()
+    # # 時間測量結果顯示
+    # print("執行時間：%f 秒" % (end - start))
+    # print('--------------------------------------------------------------------')
 
 def recursion(repositories, count):
     # 滿足大於等於門檻的所有組合
@@ -137,7 +151,7 @@ def recursion(repositories, count):
                 if i & (1 << j):
                     subSet.append((repositories[repo])[j])
                     subSet_sum_list = subSet_sum
-                    subSet_sum += int((repositories[repo])[j])
+                    subSet_sum += int((repositories[repo])[j]['value'])
                 # 將符合門檻的取出來並 break 跳出
                 if (subSet_sum >= real_target_sum_list[count]) and (subSet_sum_list <= real_target_sum_list[count]):
                     if subSet not in subSet_filter:
@@ -152,34 +166,42 @@ def recursion(repositories, count):
             index = subSet_filter_minus.index(min(subSet_filter_minus))
             powerSet.append(subSet_filter[index])
 
+    print(powerSet)  
+    
     # 依據 powerSet 求出 powerSet_sum
     for i in range(len(powerSet)):
-        powerSet_sum.append(sum(powerSet[i]))
+        buff = 0
+        for j in range(len(powerSet[i])):
+            buff += powerSet[i][j]['value']
+        powerSet_sum.append(buff)
+
+    print(powerSet_sum)
 
     # repositories 扣除 powerSet 後剩餘可選
-    remainder = []
-    for i in range(len(powerSet)):
-        try:
-            remainder.append(list(repositories[i]))
-        except:
-            remainder.append(list(repositories[0]))
-        for j in range(len(powerSet[i])):
-            try:
-                remainder[i].remove((powerSet[i])[j])
-            except:
-                pass
+    # remainder = []
+    # for i in range(len(powerSet)):
+    #     try:
+    #         remainder.append(list(repositories[i]))
+    #     except:
+    #         remainder.append(list(repositories[0]))
+        # for j in range(len(powerSet[i])):
+        #     try:
+        #         remainder[i].remove((powerSet[i])[j])
+        #     except:
+        #         pass
+  
 
-    # 將剩餘可選的所有組合加到 repositories
-    repositories.clear()
-    for i in range(len(remainder)):
-        repositories.append(remainder[i])
+    # # 將剩餘可選的所有組合加到 repositories
+    # repositories.clear()
+    # for i in range(len(remainder)):
+    #     repositories.append(remainder[i])
 
-    return [powerSet, powerSet_sum, repositories]
+    # return [powerSet, powerSet_sum, repositories]
 # _______________________________________________________________________________________________________________________
 
 # 使用者輸入要拆的金額
 print('--------------------------------------------------------------------')
-target_sum = str(input('Please enter the price you want to split : ')) 
+target_sum = str(input('請輸入您想拆分的金額以空白分隔：')) 
 print('--------------------------------------------------------------------')
 
 #  建立判斷拆幾筆跟門檻的 list
