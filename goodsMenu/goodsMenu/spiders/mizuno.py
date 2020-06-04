@@ -22,9 +22,7 @@ class MizunoSpider(CrawlSpider):
 	serial = -1
 
 	def start_requests(self):
-		urls = ['https://www.mizunousa.com/category/sports/running/sports+running+apparel.do?c=100262.100269.100356&sortby=bestSellersAscend&pp=100',
-				'https://www.mizunousa.com/category/sports/golf/accessories.do?c=100262.100351.100363&sortby=ourPicksAscend&pp=100',
-				'https://www.mizunousa.com/category/sports/running/accessories.do?c=100262.100269.100357&sortby=ourPicksAscend&page=all']
+		urls = 'https://www.mizunousa.com/category/sports/running/sports+running+apparel.do?c=100262.100269.100356&sortby=bestSellersAscend&pp=100'
 		yield scrapy.Request(urls, self.parst_list)
 
 	def parst_list(self, response):
