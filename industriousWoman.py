@@ -228,5 +228,4 @@ result = split_algorithm(must_buy)
 # [500, 330, 330, 330, 300, 250, 150, 100]
 # [goodsMenu[i]['value'], goodsMenu[i+1][value]]
 # a = [0, 4]
-
 # goodsMenu[0]['name']
