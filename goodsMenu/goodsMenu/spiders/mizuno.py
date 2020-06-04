@@ -46,5 +46,5 @@ class MizunoSpider(CrawlSpider):
 		crawlitem['serial'] = self.serial
 		crawlitem['name'] = name
 		crawlitem['value'] = value
-		crawlitem['number'] = number
+		crawlitem['number'] = 1
 		return crawlitem
