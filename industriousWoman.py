@@ -104,12 +104,13 @@ def split_algorithm(must_buy):
     for i in range(len(real_target_sum_list)):
         print('第' + str(i) + '筆 = {}, path = {}'.format(answer_list[i][index], answer_path[i][index]))
         repositories = (answer_path[i][index])
+        # 顯示商品名稱
+        for j in range(len(temp_value)):
+            for k in range(len(repositories)):
+                if temp_value[j] == repositories[k]:                
+                    print(str(temp_value[j]) +" "+ temp_name[j])
     print('總體最佳解 = {}'.format(min(overall_best_solution) + must_buy_value))
-    # 顯示商品名稱
-    for i in range(len(temp_value)):
-        for j in range(len(repositories)):
-            if temp_value[i] == repositories[j]:
-                print(temp_name[i])
+    
 
 def recursion(repositories, count):
     # 滿足大於等於門檻的所有組合
