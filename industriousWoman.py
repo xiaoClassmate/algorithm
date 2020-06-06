@@ -6,14 +6,11 @@ def must_buy(target_sum_list):
     # 導入商品清單(JSON)
     with open("goodsMenu/goodsMenu/json/goodsMenu.json") as f:
         goodsMenu = json.load(f)
-
     # 輸入必買物，格式：[編號A 數量A 編號B 數量B 編號C 數量C ...]
     must_buy = str(input('請輸入您必須購買的序列號和編號：'))
     print('--------------------------------------------------------------------')
-
     # 全域變數(global)會解決一切
     global real_target_sum_list
-
     # 寫 real_target_sum_list = target_sum_list 只會讓兩個相等 ... 要讓左邊附值到右邊請加 list
     real_target_sum_list = list(target_sum_list)
 
@@ -29,26 +26,21 @@ def must_buy(target_sum_list):
         must_buy_serial = []
         # 必買的數量
         must_buy_number = []
-
         # 將序號跟數量分別存到各自的 list 中，因為格式是 [編號，數量，編號，數量] mod 2 取餘數
         for i in range(len(must_buy.split(' '))):
             if(i % 2 == 0):
                 must_buy_serial.append(int(must_buy.split(' ')[i]))
             else:
                 must_buy_number.append(int(must_buy.split(' ')[i]))
-
         must_buy_value = 0
         for i in range(len(must_buy.split(' ')) // 2):
             # JSON 索引設定
             item = goodsMenu[must_buy_serial[i]]
-
             # 判斷數量是否合乎邏輯
             if item['number'] < must_buy_number[i]:
                 return ('產品編號 '+ str(item['serial']) +' ，必買數量超過可接受數量')
-
             # 必買物總價
             must_buy_value += item['value'] * must_buy_number[i]
-
             # 實際要拆分的錢 = 拆分的錢 - 必買物價格*數量 (備註，這個寫法爛到不行)
             for v in range(must_buy_number[i]):
                 if real_target_sum_list[0] > 0:
@@ -57,14 +49,11 @@ def must_buy(target_sum_list):
                     real_target_sum_list[1] -= item['value']
             # 買了哪些 "必買物"
             print ([{'serial': item['serial'], 'value': item['value'], 'number':must_buy_number[i], 'name':item['name']}])
-            
             # 紀錄已經拿了幾個，並扣除，避免拿取已經拿過的產品
             item['number'] -= must_buy_number[i]
-
         print('--------------------------------------------------------------------')
         print("實際目標總和清單(減過必買物後) " + str(real_target_sum_list))
         print('--------------------------------------------------------------------')
-
         return [target_sum_list, real_target_sum_list, goodsMenu, must_buy_value]
 
 def split_algorithm(must_buy):
@@ -73,33 +62,31 @@ def split_algorithm(must_buy):
     real_target_sum_list = must_buy[1]
     goodsMenu = must_buy[2]
     must_buy_value = must_buy[3]
-
     # 商品根據金額由大到小排序
     goodsMenu = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
-
     # 必買物已經超過所有門檻，回傳必買物總金額
     for x in range(len(real_target_sum_list)):
         if real_target_sum_list[x] <= 0:
             print('門檻' + str(x) + '必買物總計 ' + str(target_sum_list[x] - real_target_sum_list[x]) + ' 元已經超過門檻')
-
     # 計算現在正在跑到第幾筆門檻
     count = 0
-
     # 倉庫的初值設定(用來跑遞迴每一層的所有組合)
     repositories = []
-    temp = []
+    temp_value = []
+    temp_name = []
     for i in range(len(goodsMenu)):
         if goodsMenu[i]["number"] >0:
             for j in range(goodsMenu[i]["number"]):
-                temp.append(goodsMenu[i]["value"])
-    repositories.append(temp)
+                temp_value.append(goodsMenu[i]["value"])
+                temp_name.append(goodsMenu[i]["name"])
 
+    repositories.append(temp_value)
+    print(repositories)
     # 根據拆的筆數，生成多少個 list，例：len(real_target_sum_list) = 3 則生成 [[], [], []]
     calculate = [[] for i in range(len(real_target_sum_list))]
     answer_list = [[] for i in range(len(real_target_sum_list))]
     answer_path = [[] for i in range(len(real_target_sum_list))]
     overall_best_solution = []
-
     for i in range(len(real_target_sum_list)):
         resursion_record = recursion(repositories, count)
         powerSet = resursion_record[0]
@@ -109,7 +96,6 @@ def split_algorithm(must_buy):
         answer_list[i].extend(powerSet_sum)
         answer_path[i].extend(powerSet)
         count += 1
-
     for i in range(len(real_target_sum_list)-1):
         calculate[i+1] = [e1 + e2 for e1, e2 in zip(calculate[i], calculate[i+1])]
     overall_best_solution = calculate[-1]
@@ -117,7 +103,13 @@ def split_algorithm(must_buy):
 
     for i in range(len(real_target_sum_list)):
         print('第' + str(i) + '筆 = {}, path = {}'.format(answer_list[i][index], answer_path[i][index]))
+        repositories = (answer_path[i][index])
     print('總體最佳解 = {}'.format(min(overall_best_solution) + must_buy_value))
+    # 顯示商品名稱
+    for i in range(len(temp_value)):
+        for j in range(len(repositories)):
+            if temp_value[i] == repositories[j]:
+                print(temp_name[i])
 
 def recursion(repositories, count):
     # 滿足大於等於門檻的所有組合
@@ -179,7 +171,7 @@ def recursion(repositories, count):
 
 # 使用者輸入要拆的金額
 print('--------------------------------------------------------------------')
-target_sum = str(input('Please enter the price you want to split : ')) 
+target_sum = str(input('請輸入您想購買的金額：')) 
 print('--------------------------------------------------------------------')
 
 #  建立判斷拆幾筆跟門檻的 list
