@@ -1,9 +1,8 @@
 [
-{"serial": 0, "name": "Women's Impulse 3/4 Tight", "value": 500, "number": 1},
-{"serial": 1, "name": "Men's Inspire Graphic Tee", "value": 330, "number": 1},
-{"serial": 2, "name": "Men's Alpha Vent Tee", "value": 300, "number": 1},
-{"serial": 3, "name": "Men's Patriot 5.5 Core Short", "value": 250, "number": 1},
-{"serial": 4, "name": "Women's Lyra Tank", "value": 240, "number": 1},
-{"serial": 5, "name": "Women's Alpha 4 Short", "value": 190, "number": 1},
-{"serial": 6, "name": "Women's BCRF Inspire Tee", "value": 100, "number": 1}
+{"serial": 0, "name": "0 號商品", "value": 150, "number": 1},
+{"serial": 1, "name": "1 號商品", "value": 330, "number": 1},
+{"serial": 2, "name": "2 號商品", "value": 300, "number": 1},
+{"serial": 3, "name": "3 號商品", "value": 250, "number": 1},
+{"serial": 4, "name": "4 號商品", "value": 500, "number": 1},
+{"serial": 5, "name": "5 號商品", "value": 100, "number": 1}
 ]

@@ -62,6 +62,7 @@ def split_algorithm(must_buy):
     real_target_sum_list = must_buy[1]
     goodsMenu = must_buy[2]
     must_buy_value = must_buy[3]
+    print(goodsMenu)
     # 商品根據金額由大到小排序
     goodsMenu = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
     # 必買物已經超過所有門檻，回傳必買物總金額
@@ -108,7 +109,7 @@ def split_algorithm(must_buy):
         for j in range(len(temp_value)):
             for k in range(len(repositories)):
                 if temp_value[j] == repositories[k]:                
-                    print(str(temp_value[j]) +" "+ temp_name[j])
+                    print(str(temp_value[j]) + " " + temp_name[j])
     print('總體最佳解 = {}'.format(min(overall_best_solution) + must_buy_value))
     
 
