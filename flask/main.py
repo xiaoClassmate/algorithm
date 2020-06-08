@@ -5,9 +5,9 @@ from flask import render_template
 app = Flask(__name__)
 # bootstrap=Bootstrap(app)
 
-@app.route('/<user>')
-def index(user):
-    return render_template('index.html', user_template=user)
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.debug = True
