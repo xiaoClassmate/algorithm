@@ -1,5 +1,6 @@
 import pretty_errors
 import json
+import time
 
 # 必買物功能
 def must_buy(target_sum_list):
@@ -89,7 +90,6 @@ def split_algorithm(must_buy):
                 temp_value.append(goodsMenu[i]["value"])
                 temp_name.append(goodsMenu[i]["name"])
     repositories.append(temp_value)
-    # print(repositories)
 
     # 根據拆的筆數，生成多少個 list，例：len(real_target_sum_list) = 3 則生成 [[], [], []]
     calculate = [[] for i in range(len(real_target_sum_list))]
@@ -97,7 +97,7 @@ def split_algorithm(must_buy):
     answer_path = [[] for i in range(len(real_target_sum_list))]
     overall_best_solution = []
 
-    for i in range(2):
+    for i in range(len(real_target_sum_list)):
         resursion_record = recursion(repositories, count)
         powerSet = resursion_record[0]
         powerSet_sum = resursion_record[1]
@@ -122,6 +122,12 @@ def split_algorithm(must_buy):
                     print(str(temp_value[j]) + " " + temp_name[j])
 
     print('總體最佳解 = {}'.format(min(overall_best_solution) + must_buy_value))
+    print('--------------------------------------------------------------------')
+
+    # 結束執行時間測量並顯示
+    global end
+    end = time.time()
+    print("執行時間：%f 秒" % (end - start))
 
 def recursion(repositories, count):
     # 滿足大於等於門檻的所有組合
@@ -155,8 +161,6 @@ def recursion(repositories, count):
                 subSet_filter_minus.append(sum(subSet_filter[i]))
             index = subSet_filter_minus.index(min(subSet_filter_minus))
             powerSet.append(subSet_filter[index])
-
-    # print(powerSet)
 
     # 依據 powerSet 求出 powerSet_sum
     for i in range(len(powerSet)):
@@ -201,6 +205,10 @@ def recursion(repositories, count):
 print('--------------------------------------------------------------------')
 target_sum = str(input('請輸入您想購買的金額：')) 
 print('--------------------------------------------------------------------')
+
+# 測試執行時間
+global start
+start = time.time()
 
 #  建立判斷拆幾筆跟門檻的 list
 target_sum_list = [] 
