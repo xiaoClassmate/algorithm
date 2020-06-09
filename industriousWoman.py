@@ -187,7 +187,6 @@ def recursion(repositories, count):
                     pass
         except:
             pass
-
         remainder_len -= 1;
 
     # 將剩餘可選的所有組合加到 repositories
@@ -221,7 +220,6 @@ try:
     result = split_algorithm(must_buy)
 except:
     print('你的商品總額不足以拆分門檻')
-
 
 # _______________________________________________________________________________________________________________________
 
