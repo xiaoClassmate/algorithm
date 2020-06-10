@@ -12,6 +12,10 @@ def must_buy(target_sum_list):
     must_buy = str(input('請輸入您必須購買的序列號和編號：'))
     print('--------------------------------------------------------------------')
 
+    # 測試執行時間
+    global start
+    start = time.time()
+
     # 全域變數(global)會解決一切
     global real_target_sum_list
 
@@ -205,10 +209,6 @@ def recursion(repositories, count):
 print('--------------------------------------------------------------------')
 target_sum = str(input('請輸入您想購買的金額：')) 
 print('--------------------------------------------------------------------')
-
-# 測試執行時間
-global start
-start = time.time()
 
 #  建立判斷拆幾筆跟門檻的 list
 target_sum_list = [] 
