@@ -31,7 +31,7 @@ Split two or more, solution json mapping.
 - [ ] 9. 嘗試優化程式時間複雜度。
 Try optimization to Big-O of programing.
 
-- [x] 10. 架設 Flask 
+- [x] 10. 架設 Flask 框架。
 Set up a website.
 ---
 
