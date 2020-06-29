@@ -1,8 +1,22 @@
 [
-{"serial": 0, "name": "0 號商品", "value": 150, "number": 1},
-{"serial": 1, "name": "1 號商品", "value": 330, "number": 1},
-{"serial": 2, "name": "2 號商品", "value": 300, "number": 1},
-{"serial": 3, "name": "3 號商品", "value": 250, "number": 1},
-{"serial": 4, "name": "4 號商品", "value": 500, "number": 1},
-{"serial": 5, "name": "5 號商品", "value": 100, "number": 1}
+{"serial": 0, "value": 173, "number": 1, "name": "Women's Aero Tee"},
+{"serial": 1, "value": 163, "number": 1, "name": "MEN'S ALPHA LONG SLEEVE HALF ZIP 2.0"},
+{"serial": 2, "value": 39, "number": 1, "name": "Men's Atlanta Track Club 50/50 Tank"},
+{"serial": 3, "value": 54, "number": 1, "name": "Women's Inspire Singlet"},
+{"serial": 4, "value": 22, "number": 1, "name": "Men's United We Stand Inspire"},
+{"serial": 5, "value": 11, "number": 1, "name": "Women's Alpha Tee"},
+{"serial": 6, "value": 89, "number": 1, "name": "WOMEN'S IMPULSE CORE TIGHT"},
+{"serial": 7, "value": 138, "number": 1, "name": "Womens United We Stand Tee"},
+{"serial": 8, "value": 20, "number": 1, "name": "Men's Inspire Long Sleeve"},
+{"serial": 9, "value": 58, "number": 1, "name": "Women's Patriotic Tank"},
+{"serial": 10, "value": 117, "number": 1, "name": "Men's Alpha Singlet"},
+{"serial": 11, "value": 61, "number": 1, "name": "Men's Atlanta Track Club 50/50 Tee"},
+{"serial": 12, "value": 76, "number": 1, "name": "Women's Impulse Print Long Tight"},
+{"serial": 13, "value": 165, "number": 1, "name": "Alpha Mesh Back Sports Bra"},
+{"serial": 14, "value": 181, "number": 1, "name": "Men's Alpha Long Sleeve"},
+{"serial": 15, "value": 10, "number": 1, "name": "Women's Inspire Tee"},
+{"serial": 16, "value": 190, "number": 1, "name": "Women's Static Breath Thermo Long Sleeve"},
+{"serial": 17, "value": 16, "number": 1, "name": "Women's Breath Thermo Base Layer Long Sleeve"},
+{"serial": 18, "value": 69, "number": 1, "name": "WOMEN'S ALPHA 4.0 SHORT"},
+{"serial": 19, "value": 65, "number": 1, "name": "Men's Stars and Shoelaces"}
 ]

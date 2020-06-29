@@ -63,15 +63,17 @@ def must_buy(target_sum_list):
         print('--------------------------------------------------------------------')
         print("實際目標總和清單(減過必買物後) " + str(real_target_sum_list))
         print('--------------------------------------------------------------------')
-
+        print(real_target_sum_list)
         return [target_sum_list, real_target_sum_list, goodsMenu, must_buy_value]
 
+# 2-1
 def split_algorithm(must_buy):
     # 必買物傳值設定
     target_sum_list = must_buy[0]
     real_target_sum_list = must_buy[1]
     goodsMenu = must_buy[2]
     must_buy_value = must_buy[3]
+
 
     # 商品根據金額由大到小排序
     goodsMenu = sorted(goodsMenu , key = lambda i: i['value'], reverse=True)
@@ -131,7 +133,7 @@ def split_algorithm(must_buy):
     # 結束執行時間測量並顯示
     global end
     end = time.time()
-    print("執行時間：%f 秒" % (end - start))
+    # print("執行時間：%f 秒" % (end - start))
 
 def recursion(repositories, count):
     # 滿足大於等於門檻的所有組合
@@ -218,7 +220,7 @@ target_sum_list = []
 for i in range(len(target_sum.split(' '))):
     target_sum_list.append(int(target_sum.split(' ')[i]))
     # 由小到大排序(為了符合大金額放小門檻的原理，小門檻優先拆分)
-    target_sum_list = sorted(target_sum_list, reverse=False)
+    target_sum_list = list(target_sum_list)
 
 # must_buy(目標門檻陣列) >> 回傳 split_algorithm 需要的參數
 must_buy = must_buy(target_sum_list)
