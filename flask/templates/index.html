@@ -1,34 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Flask</title>
+    <meta charset="UTF-8">
+    <title>Hello</title>
 </head>
 <body>
-	<h1> {{ templates_user }} hello Flask</h1>
-
-	<!-- 引入 firebase 函式庫 -->
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
-
-	<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
-	<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
-
-	<script>
-	  // Your web app's Firebase configuration
-	  var firebaseConfig = {
-	    apiKey: "AIzaSyCDuyQEcT7FbDI8kJkQ4TzP0Un3F4BwC3A",
-	    authDomain: "industriouswoman-myg36t91.firebaseapp.com",
-	    databaseURL: "https://industriouswoman-myg36t91.firebaseio.com",
-	    projectId: "industriouswoman-myg36t91",
-	    storageBucket: "industriouswoman-myg36t91.appspot.com",
-	    messagingSenderId: "902295424134",
-	    appId: "1:902295424134:web:7876cc39ae5fd3a0ea9507",
-	    measurementId: "G-DXZ0LF42BC"
-	  };
-	  // 初始化 Firebase
-	  firebase.initializeApp(firebaseConfig);
-	  firebase.analytics();
-	</script>
+    hello, {{ templates_user }} Welcome my homepage!
 </body>
 </html>
