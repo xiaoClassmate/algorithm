@@ -29,7 +29,7 @@ def b():
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
 	if request.method == 'POST':
-		return 'Hello ' + request.values['username']
+		return redirect(url_for('index', templates_user = request.form.get('username')))
 	else:
 		return render_template('login.html')
 
