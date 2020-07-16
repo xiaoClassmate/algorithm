@@ -1,6 +1,22 @@
 from flask import Flask, url_for, redirect, render_template, request
 
+# Pyrebase 是 Firebase REST API 的 Python 接口
+import pyrebase
+
+import firebase_admin
+from firebase_admin import credntials, firestore
+
 app = Flask(__name__)
+
+config = {
+  "apiKey": "apiKey",
+  "authDomain": "projectId.firebaseapp.com",
+  "databaseURL": "https://databaseName.firebaseio.com",
+  "storageBucket": "projectId.appspot.com",
+  "serviceAccount": "flask/industriouswoman-myg36t91-firebase-adminsdk.json"
+}
+
+firebase = pyrebase.initialize_app(config)
 
 # 渲染模板
 @app.route('/')
