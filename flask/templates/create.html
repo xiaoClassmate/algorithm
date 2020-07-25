@@ -1,70 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Hello</title>
-
-    <!-- bootstrap-css -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-    <!-- self-definition-css -->
+    <!-- bootstrap.css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="static/create.css">
+
+    <meta charset="UTF-8">
+    <title>新增物品</title>
 </head>
 <body>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-database.js"></script>
+    <!-- firebase js sdk -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-         https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
-
-    <!-- self-definition-js -->
-    <script src="static/create.js"></script>
-
+    <!-- firebase config -->
     <script>
-      // Initialize Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyCDuyQEcT7FbDI8kJkQ4TzP0Un3F4BwC3A",
+            authDomain: "industriouswoman-myg36t91.firebaseapp.com",
+            databaseURL: "https://industriouswoman-myg36t91.firebaseio.com",
+            projectId: "industriouswoman-myg36t91",
+            storageBucket: "industriouswoman-myg36t91.appspot.com",
+            messagingSenderId: "902295424134",
+            appId: "1:902295424134:web:7876cc39ae5fd3a0ea9507",
+            measurementId: "G-DXZ0LF42BC"
+        };
+
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
-
-      function writeData(){
-        firebase.database().ref("goods/").set({
-            name: document.getElementById("name").value,
-            price: document.getElementById("price").value,
-            number: document.getElementById("number").value
-        });
-      }
     </script>
 
-    <div class="container" style="margin-left:-150px">
-        <div class="row" style="margin-top:150px">
-            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-3">
-                <form role="form">
-                    <fieldset>
-                        <h2>Please Add Goods Data</h2>
-                        <hr class="colorgraph">
-                        <div class="form-group">
-                            <input type="text" name="name" id="name" class="form-control input-lg" placeholder="name">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="price" id="price" class="form-control input-lg" placeholder="price">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="number" id="number" class="form-control input-lg" placeholder="number">
-                        </div>
-                        <hr class="colorgraph">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <button id="addBtn" onclick="writeData()" class="btn btn-lg btn-success btn-block">新增物品</button>
-                            </div>
-                        </div>
-                    </fieldset>
+    <!-- self-definition function -->
+    <script>
+        function writeData(){
+            firebase.database().ref("goods").push({
+                name: document.getElementById("name").value,
+                price: document.getElementById("price").value,
+                number: document.getElementById("number").value
+            }).then(function () {
+                alert("商品新增成功");
+            }).catch(function () {
+                alert("發生錯誤，請稍後再試");
+            });
+            getData();
+        }
+
+        function getData(){
+            firebase.database().ref("goods").on("value", function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var childKey = childSnapshot.key;
+                    var childData = childSnapshot.val();
+                    document.getElementById("data").innerHTML = "商品名稱： " + childData["name"] + ", " + "商品價格： " + childData["price"] + ", " + "商品數量： " + childData["number"];
+                });
+            });
+            getData();
+        }
+    </script>
+
+<!-- add goods form -->
+    <div class="menu">
+        <div class="container" style="margin-left: 15%; margin-top: 60%">
+            <div class="row">
+                <form id="form">
+                    <div class="form-group">
+                        商品名稱:<input type="text" class="form-control" id="name">
+                        商品價格:<input type="text" class="form-control" id="price">
+                        商品數量:<input type="text" class="form-control" id="number">
+                    </div>
                 </form>
             </div>
+            <button onclick="writeData()" class="btn btn-success">新增物品</button>
         </div>
     </div>
+    <div class="content">
+        <div class="list-group">
+            <p id="data"></p>
+        </div>
+    </div>
+
 </body>
 </html>
-

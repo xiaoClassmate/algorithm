@@ -1,0 +1,14 @@
+ .menu {
+     height: 100vh;
+     width: 300px;
+     background-color: #16DFD8;
+     float: left;
+     font-family:Microsoft JhengHei;
+
+ }
+ .content {
+ 	font-family:Microsoft JhengHei;
+	margin-left: 30%;
+	margin-right: 30%;
+	padding-top: 10%;
+ }

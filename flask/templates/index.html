@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello</title>
+    <!-- bootstrap-css -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!-- RealTime Database auth -->
 	<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
-	<script src="static/login.js"></script>
+
 </head>
 <body>
-    hello, {{ templates_user }} Welcome my homepage!
+    hello, {{ templates_user }} Welcome my homepage!<br>
+    <a href="create"><button class="btn btn-lg btn-primary btn-block">create</button></a>
 </html>
