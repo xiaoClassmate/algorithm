@@ -207,29 +207,42 @@ def recursion(repositories, count):
     return [powerSet, powerSet_sum, repositories]
 # _______________________________________________________________________________________________________________________
 
-# 使用者輸入要拆的金額
-print('--------------------------------------------------------------------')
-target_sum = str(input('請輸入您想購買的金額：')) 
-print('--------------------------------------------------------------------')
+# 資料前處理
+with open("goodsMenu/goodsMenu/json/firebase_export.json") as f:
+    data_split = json.load(f)
+    
+data_split.split('"mustNumber" : "')[1]
+print(data_split)
 
-#  建立判斷拆幾筆跟門檻的 list
-target_sum_list = [] 
 
-# 將要拆分的門檻依序加入 target_sum_list
-# len(target_sum.split(' ')) = 1 表示拆 1 筆，len(target_sum.split(' ')) = 2 表示拆 2 筆，以此類推
-for i in range(len(target_sum.split(' '))):
-    target_sum_list.append(int(target_sum.split(' ')[i]))
-    # 由小到大排序(為了符合大金額放小門檻的原理，小門檻優先拆分)
-    target_sum_list = list(target_sum_list)
 
-# must_buy(目標門檻陣列) >> 回傳 split_algorithm 需要的參數
-must_buy = must_buy(target_sum_list)
 
-# split_algorithm(必買物) >> 回傳 總體最佳解
-try:
-    result = split_algorithm(must_buy)
-except:
-    print('你的商品總額不足以拆分門檻')
+
+
+
+# # 使用者輸入要拆的金額
+# print('--------------------------------------------------------------------')
+# target_sum = str(input('請輸入您想購買的金額：')) 
+# print('--------------------------------------------------------------------')
+
+# #  建立判斷拆幾筆跟門檻的 list
+# target_sum_list = [] 
+
+# # 將要拆分的門檻依序加入 target_sum_list
+# # len(target_sum.split(' ')) = 1 表示拆 1 筆，len(target_sum.split(' ')) = 2 表示拆 2 筆，以此類推
+# for i in range(len(target_sum.split(' '))):
+#     target_sum_list.append(int(target_sum.split(' ')[i]))
+#     # 由小到大排序(為了符合大金額放小門檻的原理，小門檻優先拆分)
+#     target_sum_list = list(target_sum_list)
+
+# # must_buy(目標門檻陣列) >> 回傳 split_algorithm 需要的參數
+# must_buy = must_buy(target_sum_list)
+
+# # split_algorithm(必買物) >> 回傳 總體最佳解
+# try:
+#     result = split_algorithm(must_buy)
+# except:
+#     print('你的商品總額不足以拆分門檻')
 
 # _______________________________________________________________________________________________________________________
 

@@ -1,0 +1,50 @@
+[
+  {
+  "goods" : {
+    "-MJMd-cBXr17JtggBnte" : {
+      "id" : 1602419356379,
+      "mustNumber" : "1",
+      "name" : "500",
+      "price" : "500"
+    },
+    "-MJMd0wuq9U64Gcw8KZx" : {
+      "id" : 1602419356380,
+      "mustNumber" : "1",
+      "name" : "330",
+      "price" : "330"
+    },
+    "-MJNFtyKO5PYFZkn70m-" : {
+      "id" : 1602429815171,
+      "mustNumber" : "1",
+      "name" : "300",
+      "price" : "300"
+    },
+    "-MJNFvvLPaZ9kQl4q9M4" : {
+      "id" : 1602429815172,
+      "mustNumber" : "1",
+      "name" : "250",
+      "price" : "250"
+    },
+    "-MJNFxVrhY8l8KL6s124" : {
+      "id" : 1602429815173,
+      "mustNumber" : "1",
+      "name" : "150",
+      "price" : "150"
+    },
+    "-MJNFyzdhd14b3YiKVW5" : {
+      "id" : 1602429815174,
+      "mustNumber" : "1",
+      "name" : "100",
+      "price" : "100"
+    }
+  },
+  "split" : {
+    "-MJLlSKvojY26ZmKSwWP" : {
+      "threshold" : "700"
+    },
+    "-MJLt5hWYa9mP45-CRqs" : {
+      "threshold" : "700"
+    }
+  }
+}
+]

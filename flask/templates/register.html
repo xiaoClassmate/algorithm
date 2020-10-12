@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- language -->
+  <meta charset="utf-8">
+  <!-- app rwd -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- JS -->
+  <script src="static/vendor/jquery/jquery.min.js"></script>
+  <script src="static/js/main.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <!-- font and icon -->
+  <link rel="stylesheet" href="static/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- ajax -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- web name -->
+  <title>industriousWoman</title>
+</head>
+<body>
+<!-- 導覽列 -->
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<span class="navbar-brand">industriousWoman</span>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+	    <span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+	    <ul class="navbar-nav">
+	    	<li class="nav-item">
+	    		<a class="nav-link" href="index.html"><span class="glyphicon glyphicon-user"></span>Home</a>
+	    	</li>
+	    	<li class="nav-item active">
+	    		<a class="nav-link" href="register.html"><span class="glyphicon glyphicon-user"></span>Sign Up</a>
+	    	</li>
+	    	<li class="nav-item">
+	    		<a class="nav-link" href="login.html"><span class="glyphicon glyphicon-user"></span>Sign In</a>
+	    	</li>  
+	    </ul>
+		</div>
+	</nav>
+
+	<br>
+
+  <!-- Sing Up  Form -->
+  <section class="sign-in">
+    <div class="container">
+      <div class="signin-content">
+        <div class="signin-form">
+          <h2 class="form-title">Sign up</h2>
+            <form method="POST" class="register-form" id="login-form">
+              <div class="form-group">
+	              <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+	              <input type="text" name="your_name" id="name" placeholder="Your Name"/>
+              </div>
+              <div class="form-group">
+                <label for="your_email"><i class="zmdi zmdi-email"></i></label>
+                <input type="text" name="your_email" id="email" placeholder="Your Email"/>
+              </div>
+              <div class="form-group">
+                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                <input type="password" name="your_pass" id="pass" placeholder="Password"/>
+              </div>
+              <div class="form-group">
+                <label for="your_repass"><i class="zmdi zmdi-lock"></i></label>
+                <input type="password" name="your_repass" id="repass" placeholder="Confirm Password"/>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+              </div>
+              <div class="form-group form-button">
+                <button onclick="register()" name="signin" id="signUp" class="btn btn-outline-primary">Sign Up</button>
+              </div>
+            </form>
+            <br>
+            <p style="text-align:center"> <a href="login.html" align="center">Let's go to Sign In</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+  <script src ="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script> 
+  <script>
+    // 資料庫設置
+    var firebaseConfig = {
+      apiKey: "AIzaSyCDuyQEcT7FbDI8kJkQ4TzP0Un3F4BwC3A",
+      authDomain: "industriouswoman-myg36t91.firebaseapp.com",
+      databaseURL: "https://industriouswoman-myg36t91.firebaseio.com",
+      projectId: "industriouswoman-myg36t91",
+      storageBucket: "industriouswoman-myg36t91.appspot.com",
+      messagingSenderId: "902295424134",
+      appId: "1:902295424134:web:7876cc39ae5fd3a0ea9507",
+      measurementId: "G-DXZ0LF42BC"
+    };
+    // 初始化資料庫
+    firebase.initializeApp(firebaseConfig);
+
+
+    function register(){
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("pass").value;
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error){
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        window.alert("Error : " + errorCode + errorMessage);
+      });
+    }
+
+  </script>
+
+</body>
+</html>
