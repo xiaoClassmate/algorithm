@@ -1,0 +1,218 @@
+@import './reset.css';
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css");
+
+/*頂端導覽列*/
+.navbar{
+	height: 7%;
+	background-color: #fe5722;
+	text-align: center;
+	font-family: 微軟正黑體;
+	color: #FFF;
+	padding: 15px 15px;
+	font-size: 130%;
+	line-height: 20px;
+}
+/*底部導覽列*/
+.navbar_2{
+	height: 9%;
+	background-color: #fff;
+	text-align: center;
+	font-family: 微軟正黑體;
+	color: #fe5722;
+	padding: 15px 15px;
+	font-size: 130%;
+	line-height: 100%;
+	box-shadow: 0 -3px 6px 0 #e0e0e0;
+}
+/*內文*/
+.content{
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	margin-top: 50px;
+}
+/*新增商品內文*/
+.content_2{
+	height: 100%;
+	width: 100%;
+	text-align: center;
+}
+/*按鈕*/
+.bt{
+	width: 25%;
+	background-color: #fff;
+    border: 1px solid #fe5722;
+    text-align: center;
+	font-family: 微軟正黑體;
+    color: #fe5722;
+    border-radius: 	5px;
+	padding: 1.5%;
+}
+.bt:hover{
+	background-color: #fe5722;
+    border: 1px solid #fff;
+    color: #fff;
+}
+#updateG{
+	background-color: #fe5722;
+	border: none;
+    text-align: center;
+	font-family: 微軟正黑體;
+    color: white;
+    border-radius: 	5px;
+}
+#deleteG{
+	background-color: #bababa;
+	border: none;
+    text-align: center;
+	font-family: 微軟正黑體;
+    color: white;
+    border-radius: 	5px;
+}
+/*刪除input的按鈕*/
+#test{
+	height: 10%;
+	width: 90%;
+	background-color: #bababa;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 100%;
+	font-family: 微軟正黑體;
+    color: white;
+    border-radius: 	5px;
+    margin-top: 2%;
+}
+#password{
+	height: 10%;
+	width: 90%;
+	background-color: #bababa;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 100%;
+	font-family: 微軟正黑體;
+    color: white;
+    border-radius: 	5px;
+    margin-top: 2%;
+}
+/*文字*/
+.word{
+	height: 7%;
+	width: 85%;
+	line-height: normal;
+	font-size: 110%;
+	font-family: 微軟正黑體;
+	color: rgb(59, 59, 59);
+	margin-top: 2%;
+}
+#showbox{
+	font-size: 90%;
+	line-height: 180%;
+}
+/*form表單裡的input*/
+.inp>input{
+	padding: 3%;
+	width: 90%;
+	font-size: 110%;
+	font-family: 微軟正黑體;
+	border: 1.5px solid #fe5722;
+	padding-left: 2%;
+	border-radius: 	5px;
+	box-sizing: border-box;
+	margin-top: 2%;
+}
+/*form表單裡的file*/
+.inp>input[type="file"]{
+	display: inline;
+	background-color: #fff;
+	display:none;
+}
+/*form表單裡的text*/
+.inp>input[type="text"]{
+	display: inline;
+	background-color: #fff;
+	margin-top: 2%;
+}
+/*form表單裡的button*/
+.inp>input[type="button"]{
+	display: inline-block;
+	background-color: #fe5722;
+	border: none;
+	padding-left: 0;
+	color: white;
+	text-align: center;
+	text-decoration: none;   
+}
+/*圖片點擊*/
+#imgClick{
+	height: 10%;
+	width: 90%;
+	background-color: #FFF;
+    border: 1.5px solid #fe5722;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 110%;
+	font-family: 微軟正黑體;
+	padding-left: 0;
+    color: rgb(59, 59, 59);
+    border-radius: 	5px;
+    margin-top: 2%;
+}
+/*文字靠左*/
+.left{
+	text-align: left;
+}
+/* Modal Header */
+.modal-header {
+  text-align: center;
+  background-color: #fe5722;
+  color: white;
+  font-size: 120%;
+}
+/* Modal Body */
+.modal-body {
+}
+/* Modal Footer */
+.modal-footer {
+  color: #000;
+}
+/*商品卡片樣式*/
+.card {
+	width: 80%;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #bababa;
+}
+.card:hover{
+	background-color: #FFE7C0;
+}
+/*圖片靠左*/
+.ll{
+	float:left;
+}
+.rr{
+	float: right;
+}
+/*相對位置*/
+.relative{
+	position: relative;
+	left: 10%;
+}
+.col{
+	padding: 5px;
+}
+.fixed {
+	position: fixed;
+	top: 0;
+}

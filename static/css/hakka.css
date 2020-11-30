@@ -1,0 +1,227 @@
+@import './reset.css';
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css");
+
+/*頂端導覽列*/
+.mynavbar{
+	position: relative;
+	display: flex;
+	line-height: 100%;
+	padding: 5%;
+	align-items: center;
+	justify-content: flex-start;
+	background-color: #fe5722;
+	font-family: 微軟正黑體;
+	font-size: 180%;
+	color: #FFF;
+}
+/*底部導覽列*/
+.navbar_2{
+	line-height: 100%;
+	padding: 5%;
+	align-items: center;
+	background-color: #fff;
+	text-align: center;
+	font-family: 微軟正黑體;
+	color: #fe5722;
+	box-shadow: 0 -3px 6px 0 #e0e0e0;
+}
+/*內文*/
+.content{
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	font-size: 150%;
+}
+/*按鈕*/
+.bt{
+	line-height: 100%;
+	padding: 1.5%;
+	width: 25%;
+	background-color: #fff;
+	border: 1px solid #fe5722;
+	text-align: center;
+	font-family: 微軟正黑體;
+	font-size: 180%;
+	color: #fe5722;
+	border-radius: 	5px;
+}
+.bt:hover{
+	background-color: #fe5722;
+	border: 1px solid #fff;
+	color: #fff;
+}
+/*新增商品視窗中新增按鈕*/
+#send{
+	line-height: 100%;
+	padding: 3%;
+	width: 20%;
+	background-color: #fe5722;
+	border: none;
+	text-align: center;
+	font-family: 微軟正黑體;
+	font-size: 150%;
+	color: #fff;
+	border-radius: 	5px;
+}/*新增商品視窗中關閉按鈕*/
+#cancel{
+	line-height: 100%;
+	padding: 3%;
+	width: 20%;
+	background-color: #bababa;
+	border: none;
+	text-align: center;
+	font-family: 微軟正黑體;
+	font-size: 150%;
+	color: #fff;
+	border-radius: 	5px;
+}
+/*card展開後完成按鈕*/
+#send_2{
+	line-height: 100%;
+	padding: 3%;
+	width: 20%;
+	background-color: #fe5722;
+	border: none;
+	text-align: center;
+	font-family: 微軟正黑體;
+	font-size: 100%;
+	color: #fff;
+	border-radius: 	5px;
+}
+/*card展開後取消按鈕*/
+#cancel_2{
+	line-height: 100%;
+	padding: 3%;
+	width: 20%;
+	background-color: #bababa;
+	border: none;
+	text-align: center;
+	font-family: 微軟正黑體;
+	font-size: 100%;
+	color: #fff;
+	border-radius: 	5px;
+}
+#updateGoods{
+	color: #6c6c6c;
+}
+#deleteGoods{
+	color: #6c6c6c;
+}
+/*文字*/
+.word{
+	display: inline-block;
+	width: 85%;
+	text-align: left;
+	color: rgb(59, 59, 59);
+	margin-top: 2%;
+}
+/*時間*/
+#showbox{
+	line-height: 240%;
+}
+/*form表單裡的input*/
+.inp>input{
+	display: inline-block;
+	line-height: 100%;
+	padding: 5%;
+	width: 90%;
+	border: 1.5px solid #fe5722;
+	text-align: center;
+	text-decoration: none;
+	font-size: 100%;
+	font-family: 微軟正黑體;
+	color: #fff;
+	border-radius: 	5px;
+	margin-top: 2%;
+}
+/*form表單裡的file*/
+.inp>input[type="file"]{
+	display:none;
+}
+/*form表單裡的text*/
+.inp>input[type="text"]{
+	text-align: left;
+	color: rgb(59, 59, 59);
+}
+/*form表單裡的password*/
+.inp>input[type="password"]{
+	text-align: left;
+	color: rgb(59, 59, 59);
+}
+/*form表單裡的button*/
+.inp>input[type="button"]{
+	background-color: #fe5722;
+	border: none;  
+}
+/*刪除input的按鈕*/
+#delInp{
+	background-color: #bababa;
+}
+/*圖片點擊*/
+#imgClick{
+	text-align: left;
+	background-color: #FFF;
+	border: 1.5px solid #fe5722;
+	color: rgb(117, 117, 117);
+}
+/*文字靠左*/
+.left{
+	text-align: left;
+	color: rgb(59, 59, 59);
+}
+/*card價格文字*/
+#price_p{
+	margin-bottom: 0;
+}
+/*新增商品標題*/
+.modal-header{
+	background-color: #fe5722;
+	font-size: 180%;
+	color: #fff;
+}
+/*商品卡片樣式*/
+.mycard{
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #bababa;
+	border-radius: 0;
+}
+.mycard:hover{
+	background-color: #FFE7C0;
+}
+.mycard_2{
+	background-color: #FFE7C0;
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #bababa;
+	border-radius: 0;
+}
+/*圖片靠左*/
+.ll{
+	float:left;
+}
+/*圖片靠右*/
+.rr{
+	float: right;
+}
+/*相對位置*/
+.relative{
+	position: relative;
+	left: 10%;
+}
+/*導覽列樣式*/
+#myCarousel{
+	transform: translateX(-100%);
+	transition: transform .35s ease;
+	display: block;
+	height: 100%;
+	width: 100%;
+	min-height: 100%;
+	background-color: #fff;
+	z-index: 9999;
+}/*導覽列出現後位置的基準線*/
+#myCarousel.menu-show{
+	transform: translateX(0%);
+}

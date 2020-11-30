@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel=stylesheet type="text/css" href="css/hakka.css">
+	<!-- Socket-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="main/mySocketConnect.js"></script>
+	<script type="text/javascript" src="main/cookieUtility.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- CSS only -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<!-- jQuery JS Popper.js-->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.1/dist/sweetalert2.all.min.js"></script>
+	<!-- Firebase.js -->
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+	<script type="text/javascript" src="main/auth.js"></script>
+	<script type="text/javascript" src="main/member.js"></script>
+	<title>haka</title>
+</head>
+<body>
+	<!-- 新增商品視窗 -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<label class="modal-title relative" id="exampleModalLabel">新增商品</label>
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body content">
+					<form class="inp" id="form">
+						<label class="word">商品圖片:</label>
+						<input type="file" class="" id="img">
+						<input type="button" class="" value="新增圖片" id="imgClick" onclick="img.click()">
+						<br>
+						<img class="img" src="" alt="">
+
+						<label class="word">商品名稱:</label>
+						<input type="text" class="" placeholder="請輸入商品名稱" id="name">
+
+						<label class="word">商品價格:</label>
+						<input type="text" class="" placeholder="請輸入商品價格" id="price">
+
+						<label class="word">購買數量:</label>
+						<input type="text" class="" placeholder="請輸入購買數量" id="number">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" id="cancel" data-dismiss="modal">關閉</button>
+					<button type="submit" id="send" onclick="addList()">新增</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 新增目標金額視窗 -->
+	<div class="modal fade" id="exampleModal_2" tabindex="-1" role="dialog" aria-labelledby="exampleModal_2Label" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<label class="modal-title relative" id="exampleModal_2Label">新增商品</label>
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body content">
+					<form class="inp" id="form_2">
+						<label class="word">目標購物金額:</label>
+						<input type="text" class="" placeholder="請輸入目標購物金額" id="threshold">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" id="cancel" data-dismiss="modal">關閉</button>
+					<button type="submit" id="send" onclick="addThreshold()">新增</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 導覽列 -->
+	<div>
+		<nav class="mynavbar navbar-dark">
+			<!-- 彈出按鈕 -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myCarousel" aria-controls="myCarousel" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- 導覽列標題 -->
+			<div class="navbar-header">
+				<div class="relative">勤儉持家的好女人</div> 
+			</div>
+		</nav>
+		<div class="collapse position-fixed" id="myCarousel">
+			<!-- 導覽列彈出標題 -->
+			<nav class="mynavbar navbar-dark">
+				<label>會員</label>
+				<label>，您好！</label>
+			</nav>
+			<!-- 導覽列彈出內文 -->
+			<div class="content">
+				<div class="container-fluid">
+					<form class="inp">
+						<br>
+						<label class="word" onclick="visitor()" id="signoutSmtBtn">登出</label>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 內容 -->
+	<div class="content">
+		<div id="carousel" class="carousel slide" data-wrap="false" data-interval="false">
+			<div class="carousel-inner">
+				<!-- 金額門檻 -->
+				<div class="item active">
+					<div class="container-fluid">
+						<!-- 新增目標金額按鈕 -->
+						<div class="inp">
+							<br>
+							<input type="button" value="新增一筆目標金額" data-toggle="modal" data-target="#exampleModal_2" data-whatever="@mdo">
+							<input type="button" value="刪除一筆目標金額" id="delInp"  onclick="deleteThreshold('${thresholdValue.id}')">
+							<div class="row"></div>
+						</div>
+						<br>
+					</div>
+					<!-- 目標金額卡片清單 -->
+					<div id="cardThreshold"></div>
+				</div>
+				<!-- 商品 -->
+				<div class="item">
+					<div class="container-fluid">
+						<!-- 新增商品按鈕 -->
+						<div class="inp">
+							<br>
+							<input type="button" value="新增商品" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+							<div class="row"></div>
+						</div>
+						<br>
+					</div>
+					<!-- 商品卡片清單 -->
+					<div id="cardSection"></div>
+				</div>
+				<!-- 確認清單 -->
+				<div class="item">
+					<div class="container-fluid">
+						<div class="inp">
+							<br>
+							<!-- 預計執行的按鈕 -->
+							<form action="/result">
+    						<input type="submit" value="計算" />
+  						</form>
+							<div class="row"></div>
+						</div>
+						<br>
+					</div>
+					<div id="cardSection_2">{{ string_variable }}</div>
+					<br>
+					<form action="/index">
+  					<input type="submit" value="返回首頁" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br><br><br>
+	<!-- 底部導覽列 -->
+	<nav class="navbar_2 navbar-dark navbar-fixed-bottom">
+		<a href="#carousel" role="button" data-slide="prev">
+			<button class="bt ll">上一步</button>
+		</a>
+		<!-- 時間顯示位置 -->
+		<span id="showbox"></span>
+		<a href="#carousel" role="button" data-slide="next">
+			<button class="bt rr">下一步</button>
+		</a>
+	</nav>
+	<script type="text/javascript" src="main/main.js"></script>
+	<script type="text/javascript" src="main/show.js"></script>
+	<!-- jQuery and JS bundle w/ Popper.js -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>
