@@ -7,8 +7,9 @@ import re
 # 必買物功能
 def must_buy(target_sum_list):
     # 導入商品清單(JSON)
-    with open("test.json") as f:
+    with open("goodsMenu/goodsMenu.json") as f:
          goodsMenu = json.load(f)
+
 
     # 輸入必買物，格式：[編號A 數量A 編號B 數量B 編號C 數量C ...]
     #must_buy = str(input('請輸入您必須購買的序列號和編號：'))
@@ -212,11 +213,11 @@ def run_algo():
     url = 'https://test-b2aac.firebaseio.com/goods.json'
     json_data = request.urlopen(url).read().decode("utf-8")
     goodlist = [json_data]
-    f = open('buy.json', 'w+')
+    f = open('static/list/threshold.json', 'w+')
     f.writelines(goodlist)
     f.close()
 
-    with open("buy.json") as f:
+    with open("static/list/threshold.json") as f:
              buyMenu = json.load(f)
 
     print('--------------------------------------------------------------------')
@@ -244,10 +245,11 @@ def run_algo():
     ST = ''
     index = overall_best_solution.index(min(overall_best_solution))
     for i in range(len(real_target_sum_list)):
-        ST += '購物門檻 =' + str(answer_list[i][index]) + ', 金額組合 =' + str(answer_path[i][index])
+        ST += str('第' + str(i) + '筆 = {}, path = {}'.format(answer_list[i][index], answer_path[i][index]))
+        repositories = (answer_path[i][index])
         for j in range(len(temp_value)):
             for k in range(len(repositories)):
                 if temp_value[j] == repositories[k]:                
                     print(str(temp_value[j]) + " " + temp_name[j])
     ST += '總體最佳解 = {} \n'.format(min(overall_best_solution))
-    return ST 
+    return str(ST) 
